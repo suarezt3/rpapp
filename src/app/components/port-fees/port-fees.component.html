@@ -26,6 +26,7 @@
             <nz-input-number
               nzPlaceHolder="Ingresa la tarifa"
               formControlName="useInstalations"
+              (change)="onInputChange1($event)"
             ></nz-input-number>
           </nz-input-number-group>
           <div class="error" *ngIf="invalidField('useInstalations')" >
@@ -40,6 +41,8 @@
             <nz-input-number
               nzPlaceHolder="Ingresa una tarifa"
               formControlName="weighing"
+              (change)="onInputChange2($event)"
+              [nzDisabled]="isDisable1"
             ></nz-input-number>
           </nz-input-number-group>
           <div class="error" *ngIf="invalidField('weighing')" >
@@ -54,6 +57,8 @@
             <nz-input-number
               nzPlaceHolder="Ingresa una tarifa"
               formControlName="load"
+              (change)="onInputChange3($event)"
+              [nzDisabled]="isDisable2"
             ></nz-input-number>
           </nz-input-number-group>
           <div class="error" *ngIf="invalidField('load')" >
@@ -70,6 +75,8 @@
             <nz-input-number
               nzPlaceHolder="Ingresa una tarifa"
               formControlName="relocation"
+              (change)="onInputChange4($event)"
+              [nzDisabled]="isDisable3"
             ></nz-input-number>
           </nz-input-number-group>
           <div class="error" *ngIf="invalidField('relocation')" >
@@ -98,6 +105,8 @@
             <nz-input-number
               nzPlaceHolder="Ingresa una tarifa"
               formControlName="totalUSD"
+              [(ngModel)]="total"
+              nzReadOnly
             ></nz-input-number>
           </nz-input-number-group>
           <div class="error" *ngIf="invalidField('totalUSD')" >
@@ -131,7 +140,7 @@
 <hr>
 
 <div>
-  <nz-table #basicTable [nzData]="listOfData">
+  <nz-table #basicTable [nzData]="data">
     <thead>
       <tr>
         <th><strong>Terminal portuario</strong></th>
@@ -142,6 +151,7 @@
         <th><strong>Bodegaje</strong></th>
         <th><strong>Total USD</strong></th>
         <th><strong>Inspección</strong></th>
+        <th><strong>Acciones</strong></th>
       </tr>
     </thead>
     <tbody>
@@ -154,11 +164,9 @@
         <td> <strong>USD</strong> {{ data.storage }}</td>
         <td> <strong>USD</strong> {{ data.totalUSD }}</td>
         <td> <strong>USD</strong> {{ data.inspection }}</td>
-        <!-- <td>
-          <a>Action 一 {{ data.name }}</a>
-          <nz-divider nzType="vertical"></nz-divider>
-          <a>Delete</a>
-        </td> -->
+        <td>
+          <a>Editar</a>
+        </td>
       </tr>
     </tbody>
   </nz-table>

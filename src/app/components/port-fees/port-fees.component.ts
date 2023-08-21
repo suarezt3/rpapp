@@ -1,14 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
-
-
-interface Person {
-  key: string;
-  name: string;
-  age: number;
-  address: string;
-}
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'app-port-fees',
@@ -19,32 +12,65 @@ export class PortFeesComponent implements OnInit {
 
   public myForm! : FormGroup;
   public data: any;
+  public total!: number;
+  public isDisable1: boolean = true
+  public isDisable2: boolean = true
+  public isDisable3: boolean = true
+  public status: string = ""
 
-  constructor(private fb: FormBuilder, private dataService: DataService) {}
+
+  constructor(private fb: FormBuilder, private dataService: DataService, private notification: NzNotificationService) {}
 
   ngOnInit(){
 
+   /**
+    * Metodo para traer la data
+   */
     this.dataService.getPortFees().subscribe((resp) => {
       console.log("DATA", resp);
       this.data = resp
-
     })
 
     /**
      * Formulario de tarifas de puerto
-     */
-    this.myForm = this.fb.group({
-      portTerminal   : ["", [Validators.required]],
-      useInstalations: ["", [Validators.required]],
-      weighing       : ["", [Validators.required]],
-      load           : ["", [Validators.required]],
-      relocation     : ["", [Validators.required]],
-      storage        : ["", [Validators.required]],
-      totalUSD       : ["", [Validators.required]],
-      inspection     : ["", [Validators.required]]
+    */
+   this.myForm = this.fb.group({
+     portTerminal   : ["", [Validators.required]],
+     useInstalations: ["", [Validators.required]],
+     weighing       : ["", [Validators.required]],
+     load           : ["", [Validators.required]],
+     relocation     : ["", [Validators.required]],
+     storage        : ["", [Validators.required]],
+     totalUSD       : ["", [Validators.required]],
+     inspection     : ["", [Validators.required]]
     })
+
+
   }
 
+
+  /**
+   *
+   * @param event Metodos para detectar los cambios en los campos del formulario
+   */
+  onInputChange1(event: any) {
+    this.total = this.myForm.get('useInstalations')?.value;
+    this.isDisable1 = false
+  }
+
+  onInputChange2(event: any) {
+    this.total = this.total + this.myForm.get('weighing')?.value;
+    this.isDisable2 = false
+  }
+
+  onInputChange3(event: any) {
+   this.total = this.total + this.myForm.get('load')?.value;
+    this.isDisable3 = false
+  }
+
+  onInputChange4(event: any) {
+   this.total = this.total + this.myForm.get('relocation')?.value;
+  }
 
   /**
    *
@@ -56,37 +82,53 @@ export class PortFeesComponent implements OnInit {
             && this.myForm.get(field)?.touched;
   }
 
+
+
+  /**
+   * La función de envío comprueba si un formulario es válido y muestra un mensaje de error o envía los
+   * datos del formulario a un servicio y muestra un mensaje de éxito.
+   */
   submit () {
     this.myForm.markAllAsTouched()
     if(this.myForm.invalid) {
       console.log("No puedes enviar");
+      let status = "error"
+      this.notificationError(status)
     }else {
       console.log(this.myForm.value);
       this.dataService.createPortFees(this.myForm.value).subscribe()
+      this.status = "success"
+      this.notificationSuccess(this.status)
       this.myForm.reset()
     }
   }
 
 
-  listOfData: Person[] = [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park'
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park'
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
+ /**
+  * La función `notificationError` crea una notificación con un mensaje de error.
+  * @param {string} type - El tipo de notificación a mostrar. Puede ser 'éxito', 'información',
+  * 'advertencia' o 'error'.
+  */
+  notificationError(type: string): void {
+    this.notification.create(
+      type,
+      'Error',
+      'No se pudo enviar los datos'
+    );
+  }
+
+/**
+  * La función `notificationError` crea una notificación con un mensaje de error.
+  * @param {string} type - El tipo de notificación a mostrar. Puede ser 'éxito', 'información',
+  * 'advertencia' o 'error'.
+  */
+  notificationSuccess(type: string): void {
+    this.notification.create(
+      type,
+      'Excelente',
+      'Datos enviados con exito'
+      );
     }
-  ];
+
 
 }

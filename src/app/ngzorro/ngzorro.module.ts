@@ -7,6 +7,7 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzNotificationModule } from 'ng-zorro-antd/notification';
 
 
 
@@ -17,14 +18,16 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
     NzInputNumberModule,
     NzButtonModule,
     NzTableModule,
-    NzDividerModule
+    NzDividerModule,
+    NzNotificationModule
   ],
   exports: [
     NzInputModule,
     NzInputNumberModule,
     NzButtonModule,
     NzTableModule,
-    NzDividerModule
+    NzDividerModule,
+    NzNotificationModule
   ]
 })
 export class NgzorroModule { }
