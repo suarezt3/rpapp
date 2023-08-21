@@ -1,0 +1,134 @@
+<form class="form" [formGroup]="myForm" (ngSubmit)="submit()" >
+
+  <h2 class="title">Tarifas de puertos </h2>
+
+  <div class="form-inputs">
+    <section>
+      <div>
+        <label for="port">Terminal portuario</label>
+        <div>
+          <nz-input-group class="input">
+            <input
+               id="port"
+               placeholder="Ingresa una terminal portuaria" nz-input type="text"
+               formControlName="portTerminal"
+               >
+              </nz-input-group>
+              <div class="error" *ngIf="invalidField('portTerminal')" >
+                <span  *ngIf="myForm.controls?.['portTerminal']?.errors?.['required']" > Campo obligatorio </span>
+              </div>
+        </div>
+      </div>
+      <div>
+        <label>Uso de instalaciones</label>
+        <div>
+          <nz-input-number-group nzPrefix="USD" class="input">
+            <nz-input-number
+              nzPlaceHolder="Ingresa la tarifa"
+              formControlName="useInstaltions"
+            ></nz-input-number>
+          </nz-input-number-group>
+          <div class="error" *ngIf="invalidField('useInstaltions')" >
+            <span  *ngIf="myForm.controls?.['useInstaltions']?.errors?.['required']" > Campo obligatorio </span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label>Pesaje</label>
+        <div>
+          <nz-input-number-group nzPrefix="USD" class="input">
+            <nz-input-number
+              nzPlaceHolder="Ingresa una tarifa"
+              formControlName="weighing"
+            ></nz-input-number>
+          </nz-input-number-group>
+          <div class="error" *ngIf="invalidField('weighing')" >
+            <span  *ngIf="myForm.controls?.['weighing']?.errors?.['required']" > Campo obligatorio </span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label>Cargue</label>
+        <div>
+          <nz-input-number-group nzPrefix="USD" class="input">
+            <nz-input-number
+              nzPlaceHolder="Ingresa una tarifa"
+              formControlName="load"
+            ></nz-input-number>
+          </nz-input-number-group>
+          <div class="error" *ngIf="invalidField('load')" >
+            <span  *ngIf="myForm.controls?.['load']?.errors?.['required']" > Campo obligatorio </span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div>
+        <label>Reubicación</label>
+        <div>
+          <nz-input-number-group nzPrefix="USD" class="input">
+            <nz-input-number
+              nzPlaceHolder="Ingresa una tarifa"
+              formControlName="relocation"
+            ></nz-input-number>
+          </nz-input-number-group>
+          <div class="error" *ngIf="invalidField('relocation')" >
+            <span  *ngIf="myForm.controls?.['relocation']?.errors?.['required']" > Campo obligatorio </span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label>Bodegaje</label>
+        <div>
+          <nz-input-number-group nzPrefix="USD" class="input">
+            <nz-input-number
+              nzPlaceHolder="Ingresa una tarifa"
+              formControlName="storage"
+            ></nz-input-number>
+          </nz-input-number-group>
+          <div class="error" *ngIf="invalidField('storage')" >
+            <span  *ngIf="myForm.controls?.['storage']?.errors?.['required']" > Campo obligatorio </span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label>Total USD</label>
+        <div>
+          <nz-input-number-group nzPrefix="USD" class="input">
+            <nz-input-number
+              nzPlaceHolder="Ingresa una tarifa"
+              formControlName="totalUSD"
+            ></nz-input-number>
+          </nz-input-number-group>
+          <div class="error" *ngIf="invalidField('totalUSD')" >
+            <span  *ngIf="myForm.controls?.['totalUSD']?.errors?.['required']" > Campo obligatorio </span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label>Inspección</label>
+        <div>
+          <nz-input-number-group nzPrefix="USD" class="input">
+            <nz-input-number
+              nzPlaceHolder="Ingresa una tarifa"
+              formControlName="inspection"
+            ></nz-input-number>
+          </nz-input-number-group>
+          <div class="error" *ngIf="invalidField('inspection')" >
+            <span  *ngIf="myForm.controls?.['inspection']?.errors?.['required']" > Campo obligatorio </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+<div>
+  <button class="btn" (click)="submit" nz-button nzType="primary">Actualizar tarifas</button>
+</div>
+
+</form>
+
+<div>
+
+</div>

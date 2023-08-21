@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+.error {
+  color: rgb(245, 12, 12);
+  font-size: small;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
