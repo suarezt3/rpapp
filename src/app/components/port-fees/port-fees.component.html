@@ -7,12 +7,20 @@
       <div>
         <label for="port">Terminal portuario</label>
         <div>
-          <nz-input-group class="input">
-            <input
+          <nz-input-group>
+            <!-- <input
                id="port"
                placeholder="Ingresa una terminal portuaria" nz-input type="text"
                formControlName="portTerminal"
-               >
+               > -->
+
+               <nz-select nzPlaceHolder="Selecciona una terminal" formControlName="portTerminal" class="input">
+                <nz-option nzValue="BUENAVENTURA" nzLabel="BUENAVENTURA"></nz-option>
+                <nz-option nzValue="CARTAGENA" nzLabel="CARTAGENA"></nz-option>
+                <nz-option nzValue="LCL" nzLabel="LCL" ></nz-option>
+                <nz-option nzValue="AEREO" nzLabel="AEREO" ></nz-option>
+              </nz-select>
+
               </nz-input-group>
               <div class="error" *ngIf="invalidField('portTerminal')" >
                 <span  *ngIf="myForm.controls?.['portTerminal']?.errors?.['required']" > Campo obligatorio </span>
@@ -165,7 +173,7 @@
         <td> <strong>USD</strong> {{ data.totalUSD }}</td>
         <td> <strong>USD</strong> {{ data.inspection }}</td>
         <td>
-          <a>Editar</a>
+          <a><button (click)="getPort(data.portTerminal)" nz-button nzType="primary">Editar</button></a>
         </td>
       </tr>
     </tbody>

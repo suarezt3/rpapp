@@ -25,6 +25,20 @@ export class DataService {
 }
 
 
+ /**
+ *
+ * @returns Trae la tabla las tarifas de los puertos
+ */
+ getPortFeesID(port: string) {
+  let headers = new HttpHeaders({
+    'apikey'       : environment.supabaseKey,
+    'Authorization': environment.authorization
+  })
+   return this.http.get<any>( `${this.urlPortFees}?portTerminal=eq.${port}` , {headers}).pipe()
+}
+
+
+
   /**
  *
  * @returns Trae la tabla las tarifas de los puertos

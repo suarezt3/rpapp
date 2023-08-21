@@ -83,6 +83,11 @@ export class PortFeesComponent implements OnInit {
   }
 
 
+  getPort(port: string) {
+    this.dataService.getPortFeesID(port).subscribe((resp) => {
+        console.log("PUERTO",resp );
+    })
+  }
 
   /**
    * La función de envío comprueba si un formulario es válido y muestra un mensaje de error o envía los
@@ -100,6 +105,9 @@ export class PortFeesComponent implements OnInit {
       this.status = "success"
       this.notificationSuccess(this.status)
       this.myForm.reset()
+      setTimeout(() => {
+        window.location.reload()
+      }, 2000);
     }
   }
 
