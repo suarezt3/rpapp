@@ -25,11 +25,11 @@
           <nz-input-number-group nzPrefix="USD" class="input">
             <nz-input-number
               nzPlaceHolder="Ingresa la tarifa"
-              formControlName="useInstaltions"
+              formControlName="useInstalations"
             ></nz-input-number>
           </nz-input-number-group>
-          <div class="error" *ngIf="invalidField('useInstaltions')" >
-            <span  *ngIf="myForm.controls?.['useInstaltions']?.errors?.['required']" > Campo obligatorio </span>
+          <div class="error" *ngIf="invalidField('useInstalations')" >
+            <span  *ngIf="myForm.controls?.['useInstalations']?.errors?.['required']" > Campo obligatorio </span>
           </div>
         </div>
       </div>
@@ -126,9 +126,40 @@
 <div>
   <button class="btn" (click)="submit" nz-button nzType="primary">Actualizar tarifas</button>
 </div>
-
 </form>
 
-<div>
+<hr>
 
+<div>
+  <nz-table #basicTable [nzData]="listOfData">
+    <thead>
+      <tr>
+        <th><strong>Terminal portuario</strong></th>
+        <th><strong>Uso de instalaciones</strong></th>
+        <th><strong>Pesaje</strong></th>
+        <th><strong>Cargue</strong></th>
+        <th><strong>Reubicación</strong></th>
+        <th><strong>Bodegaje</strong></th>
+        <th><strong>Total USD</strong></th>
+        <th><strong>Inspección</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of data">
+        <td>{{ data.portTerminal }}</td>
+        <td> <strong>USD</strong> {{ data.useInstalations }}</td>
+        <td> <strong>USD</strong> {{ data.weighing }}</td>
+        <td> <strong>USD</strong> {{ data.load }}</td>
+        <td> <strong>USD</strong> {{ data.relocation }}</td>
+        <td> <strong>USD</strong> {{ data.storage }}</td>
+        <td> <strong>USD</strong> {{ data.totalUSD }}</td>
+        <td> <strong>USD</strong> {{ data.inspection }}</td>
+        <!-- <td>
+          <a>Action 一 {{ data.name }}</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a>Delete</a>
+        </td> -->
+      </tr>
+    </tbody>
+  </nz-table>
 </div>

@@ -5,6 +5,9 @@ import { CommonModule } from '@angular/common';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+
 
 
 @NgModule({
@@ -12,12 +15,16 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     CommonModule,
     NzInputModule,
     NzInputNumberModule,
-    NzButtonModule
+    NzButtonModule,
+    NzTableModule,
+    NzDividerModule
   ],
   exports: [
     NzInputModule,
     NzInputNumberModule,
-    NzButtonModule
+    NzButtonModule,
+    NzTableModule,
+    NzDividerModule
   ]
 })
 export class NgzorroModule { }
