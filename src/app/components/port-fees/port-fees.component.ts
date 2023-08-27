@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { PORT } from 'src/app/interfaces/port.interface';
 
 @Component({
   selector: 'app-port-fees',
@@ -17,6 +18,7 @@ export class PortFeesComponent implements OnInit {
   public isDisable2: boolean = true
   public isDisable3: boolean = true
   public status: string = ""
+  public port!    : PORT[]
 
 
   constructor(private fb: FormBuilder, private dataService: DataService, private notification: NzNotificationService) {}
@@ -84,8 +86,21 @@ export class PortFeesComponent implements OnInit {
 
 
   getPort(port: string) {
-    this.dataService.getPortFeesID(port).subscribe((resp) => {
-        console.log("PUERTO",resp );
+    this.dataService.getPortFeesID(port).subscribe((resp: PORT[]) => {
+        this.port = resp
+        console.log("RESP", this.port);
+        this.myForm.patchValue({
+
+          portTerminal: resp[0]?.portTerminal,
+          useInstalations: resp[0]?.useInstalations,
+          relocation: resp[0]?.relocation,
+          storage: resp[0]?.storage,
+          weighing: resp[0]?.weighing,
+          totalUSD: resp[0]?.totalUSD,
+          load: resp[0]?.load,
+          inspection: resp[0]?.inspection
+        });
+
     })
   }
 
@@ -110,6 +125,8 @@ export class PortFeesComponent implements OnInit {
       }, 2000);
     }
   }
+
+
 
 
  /**
