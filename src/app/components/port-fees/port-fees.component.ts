@@ -19,6 +19,8 @@ export class PortFeesComponent implements OnInit {
   public isDisable3: boolean = true
   public status: string = ""
   public port!    : PORT[]
+  public portName!: string
+  public isInputReadOnly: boolean = false;
 
 
   constructor(private fb: FormBuilder, private dataService: DataService, private notification: NzNotificationService) {}
@@ -28,8 +30,7 @@ export class PortFeesComponent implements OnInit {
    /**
     * Metodo para traer la data
    */
-    this.dataService.getPortFees().subscribe((resp) => {
-      console.log("DATA", resp);
+    this.dataService.getPortFees().subscribe((resp: PORT[]) => {
       this.data = resp
     })
 
@@ -88,9 +89,8 @@ export class PortFeesComponent implements OnInit {
   getPort(port: string) {
     this.dataService.getPortFeesID(port).subscribe((resp: PORT[]) => {
         this.port = resp
-        console.log("RESP", this.port);
+        this.portName = port
         this.myForm.patchValue({
-
           portTerminal: resp[0]?.portTerminal,
           useInstalations: resp[0]?.useInstalations,
           relocation: resp[0]?.relocation,
@@ -100,8 +100,26 @@ export class PortFeesComponent implements OnInit {
           load: resp[0]?.load,
           inspection: resp[0]?.inspection
         });
+      })
+      this.isInputReadOnly = true
+    }
 
-    })
+  editForm() {
+    this.myForm.markAllAsTouched()
+    if(this.myForm.invalid) {
+      let status = "error"
+      this.notificationError(status)
+    } else {
+      let form = this.myForm.value
+      this.dataService.editPortFees(this.portName, form).subscribe()
+      this.status = "success"
+      this.notificationSuccess(this.status)
+      this.myForm.reset()
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000);
+    }
+
   }
 
   /**
@@ -111,20 +129,19 @@ export class PortFeesComponent implements OnInit {
   submit () {
     this.myForm.markAllAsTouched()
     if(this.myForm.invalid) {
-      console.log("No puedes enviar");
       let status = "error"
       this.notificationError(status)
     }else {
-      console.log(this.myForm.value);
       this.dataService.createPortFees(this.myForm.value).subscribe()
       this.status = "success"
       this.notificationSuccess(this.status)
       this.myForm.reset()
       setTimeout(() => {
         window.location.reload()
-      }, 2000);
+      }, 1000);
     }
   }
+
 
 
 

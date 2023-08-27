@@ -27,7 +27,7 @@ export class DataService {
 
  /**
  *
- * @returns Trae la tabla las tarifas de los puertos
+ * @returns Trae la tabla la tarifa de un puerto individual
  */
  getPortFeesID(port: string) {
   let headers = new HttpHeaders({
@@ -38,10 +38,9 @@ export class DataService {
 }
 
 
-
   /**
  *
- * @returns Trae la tabla las tarifas de los puertos
+ * @returns Crea las tarifas de un puerto
  */
   createPortFees(body: {}) {
     let headers = new HttpHeaders({
@@ -51,6 +50,17 @@ export class DataService {
     })
      return this.http.post<any>(this.urlPortFees, body, {headers})
  }
+
+
+ editPortFees(port: string, body: {}) {
+  let headers = new HttpHeaders({
+    'apikey'       : environment.supabaseKey,
+    'Authorization': environment.authorization,
+    'Content-Type' : 'application/json',
+  })
+
+   return this.http.patch(`${this.urlPortFees}?portTerminal=eq.${port}`, body, {headers}).pipe()
+}
 
 
 }
