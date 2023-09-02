@@ -1,4 +1,4 @@
-export interface PORT {
+export interface PORTFEES {
   created_at     : string,
   id             : string,
   inspection     : number,
@@ -11,3 +11,8 @@ export interface PORT {
   weighing       : number
 }
 
+export interface PORTS {
+  created_at     : string,
+  id             : string,
+  namePort       : string,
+}

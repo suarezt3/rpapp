@@ -15,10 +15,7 @@
                > -->
 
                <nz-select [nzDisabled]="isInputReadOnly" nzPlaceHolder="Selecciona una terminal" formControlName="portTerminal" class="input">
-                <nz-option nzValue="BUENAVENTURA" nzLabel="BUENAVENTURA"></nz-option>
-                <nz-option nzValue="CARTAGENA" nzLabel="CARTAGENA"></nz-option>
-                <nz-option nzValue="LCL" nzLabel="LCL" ></nz-option>
-                <nz-option nzValue="AEREO" nzLabel="AEREO" ></nz-option>
+                <nz-option *ngFor="let item of ports" [nzValue]="item?.namePort" [nzLabel]="item.namePort"></nz-option>
               </nz-select>
 
               </nz-input-group>

@@ -7,12 +7,12 @@ import { environment } from 'src/environments/environments';
 })
 export class DataService {
 
-  private urlPortFees= "https://iekthyollpfeqolwzaqu.supabase.co/rest/v1/portFees"
+  private apiURL= "https://iekthyollpfeqolwzaqu.supabase.co/rest/v1"
 
   constructor(private http: HttpClient) { }
 
 
-  /**
+/**
  *
  * @returns Trae la tabla las tarifas de los puertos
  */
@@ -21,8 +21,22 @@ export class DataService {
       'apikey'       : environment.supabaseKey,
       'Authorization': environment.authorization
     })
-     return this.http.get<any>(this.urlPortFees, {headers}).pipe()
+     return this.http.get<any>(`${this.apiURL}/portFees`, {headers}).pipe()
 }
+
+
+/**
+ *
+ * @returns Trae la lista de todos puertos
+ */
+getPorts() {
+  let headers = new HttpHeaders({
+    'apikey'       : environment.supabaseKey,
+    'Authorization': environment.authorization
+  })
+   return this.http.get<any>(`${this.apiURL}/ports`, {headers}).pipe()
+}
+
 
 
  /**
@@ -34,7 +48,7 @@ export class DataService {
     'apikey'       : environment.supabaseKey,
     'Authorization': environment.authorization
   })
-   return this.http.get<any>( `${this.urlPortFees}?portTerminal=eq.${port}` , {headers}).pipe()
+   return this.http.get<any>( `${this.apiURL}/portFees?portTerminal=eq.${port}` , {headers}).pipe()
 }
 
 
@@ -48,7 +62,7 @@ export class DataService {
       'Authorization': environment.authorization,
       'Content-Type' : 'application/json'
     })
-     return this.http.post<any>(this.urlPortFees, body, {headers})
+     return this.http.post<any>(`${this.apiURL}/portFees`, body, {headers})
  }
 
 
@@ -58,8 +72,7 @@ export class DataService {
     'Authorization': environment.authorization,
     'Content-Type' : 'application/json',
   })
-
-   return this.http.patch(`${this.urlPortFees}?portTerminal=eq.${port}`, body, {headers}).pipe()
+   return this.http.patch(`${this.apiURL}/portFees?portTerminal=eq.${port}`, body, {headers}).pipe()
 }
 
 

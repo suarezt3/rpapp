@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { PORT } from 'src/app/interfaces/port.interface';
+import { PORTFEES, PORTS } from 'src/app/interfaces/port.interface';
 
 @Component({
   selector: 'app-port-fees',
@@ -12,13 +12,14 @@ import { PORT } from 'src/app/interfaces/port.interface';
 export class PortFeesComponent implements OnInit {
 
   public myForm! : FormGroup;
-  public data: any;
+  public data!: any[];
+  public ports!: PORTS[]
   public total!: number;
   public isDisable1: boolean = true
   public isDisable2: boolean = true
   public isDisable3: boolean = true
   public status: string = ""
-  public port!    : PORT[]
+  public port!    : PORTFEES[]
   public portName!: string
   public isInputReadOnly: boolean = false;
 
@@ -30,8 +31,16 @@ export class PortFeesComponent implements OnInit {
    /**
     * Metodo para traer la data
    */
-    this.dataService.getPortFees().subscribe((resp: PORT[]) => {
+    this.dataService.getPortFees().subscribe((resp: PORTFEES[]) => {
       this.data = resp
+    })
+
+
+    /**
+    * Metodo para traer lista de puertos
+   */
+    this.dataService.getPorts().subscribe((resp: PORTS[]) => {
+      this.ports = resp
     })
 
     /**
@@ -87,7 +96,7 @@ export class PortFeesComponent implements OnInit {
 
 
   getPort(port: string) {
-    this.dataService.getPortFeesID(port).subscribe((resp: PORT[]) => {
+    this.dataService.getPortFeesID(port).subscribe((resp: PORTFEES[]) => {
         this.port = resp
         this.portName = port
         this.myForm.patchValue({
