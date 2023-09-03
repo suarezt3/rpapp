@@ -1,1 +1,101 @@
-<p>agent-fees works!</p>
+<div class="form" [formGroup]="myForm" (ngSubmit)="submit()">
+
+
+  <h2 class="title">Tarifas de agente/Naviera </h2>
+
+  <div class="form-inputs">
+
+
+    <section>
+      <div>
+        <label>Naviera / FF</label>
+        <div>
+          <nz-input-group>
+            <nz-select [nzDisabled]="isInputReadOnly" nzPlaceHolder="Selecciona una naviera"
+              formControlName="shippingCompany" class="input">
+              <nz-option *ngFor="let item of shippingCompany" [nzValue]="item?.nameShipping"
+                [nzLabel]="item.nameShipping"></nz-option>
+            </nz-select>
+          </nz-input-group>
+          <div class="error" *ngIf="invalidField('shippingCompany')">
+            <span *ngIf="myForm.controls?.['shippingCompany']?.errors?.['required']"> Campo obligatorio </span>
+            <span *ngIf="myForm.controls?.['shippingCompany']?.errors?.['shippingExist']"> Esta naviera ya esta
+              registrada
+              en la
+              base de datos </span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label>Por contenedor</label>
+        <div>
+
+          <nz-input-number-group nzPrefix="USD" class="input">
+            <nz-input-number nzPlaceHolder="Ingresa la tarifa" formControlName="container"></nz-input-number>
+          </nz-input-number-group>
+          <div class="error" *ngIf="invalidField('container')">
+            <span *ngIf="myForm.controls?.['container']?.errors?.['required']"> Campo obligatorio </span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label>Por proceso</label>
+        <div>
+          <nz-input-number-group nzPrefix="USD" class="input">
+            <nz-input-number nzPlaceHolder="Ingresa la tarifa" formControlName="process"></nz-input-number>
+          </nz-input-number-group>
+          <div class="error" *ngIf="invalidField('process')">
+            <span *ngIf="myForm.controls?.['process']?.errors?.['required']"> Campo obligatorio </span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+
+      <div>
+        <label>Total</label>
+        <div>
+          <nz-input-number-group nzPrefix="USD" class="input">
+            <nz-input-number nzPlaceHolder="Ingresa la tarifa" formControlName="total"></nz-input-number>
+          </nz-input-number-group>
+          <div class="error" *ngIf="invalidField('total')">
+            <span *ngIf="myForm.controls?.['total']?.errors?.['required']"> Campo obligatorio </span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label>Dias demoras por contador</label>
+        <div>
+          <nz-input-number-group nzPrefix="USD" class="input">
+            <nz-input-number nzPlaceHolder="Ingresa la tarifa" formControlName="daysPerContainer"></nz-input-number>
+          </nz-input-number-group>
+          <div class="error" *ngIf="invalidField('daysPerContainer')">
+            <span *ngIf="myForm.controls?.['daysPerContainer']?.errors?.['required']"> Campo obligatorio </span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label>DROP OFF</label>
+        <div>
+          <nz-input-number-group nzPrefix="USD" class="input">
+            <nz-input-number nzPlaceHolder="Ingresa la tarifa" formControlName="drop"></nz-input-number>
+          </nz-input-number-group>
+          <div class="error" *ngIf="invalidField('drop')">
+            <span *ngIf="myForm.controls?.['drop']?.errors?.['required']"> Campo obligatorio </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div>
+    <button  class="btn" (click)="submit()" nz-button nzType="primary">Enviar</button>
+    <button  class="btn" (click)="editForm()" nz-button nzType="primary">Actualizar</button>
+  </div>
+
+</div>

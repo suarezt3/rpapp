@@ -12,16 +12,16 @@ import { ValidatorServices } from 'src/app/services/validator.service';
 })
 export class PortFeesComponent implements OnInit {
 
-  public myForm! : FormGroup;
-  public data!: any[];
-  public ports!: PORTS[]
-  public total!: number;
-  public isDisable1: boolean = true
-  public isDisable2: boolean = true
-  public isDisable3: boolean = true
-  public status: string = ""
-  public port!    : PORTFEES[]
-  public portName!: string
+  public myForm!        : FormGroup;
+  public data!          : any[];
+  public ports!         : PORTS[]
+  public total!         : number;
+  public isDisable1     : boolean = true
+  public isDisable2     : boolean = true
+  public isDisable3     : boolean = true
+  public status         : string = ""
+  public port!          : PORTFEES[]
+  public portName!      : string
   public isInputReadOnly: boolean = false;
 
 
@@ -56,7 +56,7 @@ export class PortFeesComponent implements OnInit {
      storage        : ["", [Validators.required]],
      totalUSD       : ["", [Validators.required]],
      inspection     : ["", [Validators.required]],
-     newDate        : [new Date()]
+     upDate        : [new Date()]
     })
 
 

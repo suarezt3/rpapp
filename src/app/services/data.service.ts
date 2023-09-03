@@ -38,6 +38,19 @@ getPorts() {
 }
 
 
+/**
+ *
+ * @returns Trae la lista de todas la navieras
+ */
+getShipping() {
+  let headers = new HttpHeaders({
+    'apikey'       : environment.supabaseKey,
+    'Authorization': environment.authorization
+  })
+   return this.http.get<any>(`${this.apiURL}/shippingCompany`, {headers}).pipe()
+}
+
+
 
  /**
  *
@@ -52,9 +65,9 @@ getPorts() {
 }
 
 
-  /**
+/**
  *
- * @returns Crea las tarifas de un puerto
+ * @returns enviar el formulario con las tarifas de un puerto
  */
   createPortFees(body: {}) {
     let headers = new HttpHeaders({
@@ -64,6 +77,20 @@ getPorts() {
     })
      return this.http.post<any>(`${this.apiURL}/portFees`, body, {headers})
  }
+
+
+ /**
+ *
+ * @returns enviar el formulario con las tarifas de una naviera
+ */
+ createShippingFees(body: {}) {
+  let headers = new HttpHeaders({
+    'apikey'       : environment.supabaseKey,
+    'Authorization': environment.authorization,
+    'Content-Type' : 'application/json'
+  })
+   return this.http.post<any>(`${this.apiURL}/agentFees`, body, {headers})
+}
 
 
  editPortFees(port: string, body: {}) {

@@ -22,14 +22,13 @@ export class ValidatorServices implements AsyncValidator {
     const port = control.value.toUpperCase();
     return this.http.get<any[]>(`${this.apiUrl}${ port }`, {headers})
                 .pipe(
-                  // delay(3000),
                   map( resp => {
                     return ( resp.length === 0 )
                         ? null
                         : { portExist: 'Este puerto ya esta registrado en la base de datos' }
                   })
                 );
-
   }
+
 }
 
