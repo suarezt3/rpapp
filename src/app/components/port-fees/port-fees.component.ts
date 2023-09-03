@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { PORTFEES, PORTS } from 'src/app/interfaces/port.interface';
+import { ValidatorServices } from 'src/app/services/validator.service';
 
 @Component({
   selector: 'app-port-fees',
@@ -24,7 +25,7 @@ export class PortFeesComponent implements OnInit {
   public isInputReadOnly: boolean = false;
 
 
-  constructor(private fb: FormBuilder, private dataService: DataService, private notification: NzNotificationService) {}
+  constructor(private fb: FormBuilder, private dataService: DataService, private validatorServices: ValidatorServices,  private notification: NzNotificationService) {}
 
   ngOnInit(){
 
@@ -47,7 +48,7 @@ export class PortFeesComponent implements OnInit {
      * Formulario de tarifas de puerto
     */
    this.myForm = this.fb.group({
-     portTerminal   : ["", [Validators.required]],
+     portTerminal   : ["", [Validators.required], [this.validatorServices]],
      useInstalations: ["", [Validators.required]],
      weighing       : ["", [Validators.required]],
      load           : ["", [Validators.required]],
