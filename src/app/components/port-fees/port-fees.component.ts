@@ -55,7 +55,8 @@ export class PortFeesComponent implements OnInit {
      relocation     : ["", [Validators.required]],
      storage        : ["", [Validators.required]],
      totalUSD       : ["", [Validators.required]],
-     inspection     : ["", [Validators.required]]
+     inspection     : ["", [Validators.required]],
+     newDate        : [new Date()]
     })
 
 
@@ -97,6 +98,7 @@ export class PortFeesComponent implements OnInit {
 
 
   getPort(port: string) {
+    this.myForm.get('portTerminal')?.setAsyncValidators(null)
     this.dataService.getPortFeesID(port).subscribe((resp: PORTFEES[]) => {
         this.port = resp
         this.portName = port

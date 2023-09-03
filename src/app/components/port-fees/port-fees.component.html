@@ -152,6 +152,7 @@
         <th><strong>Bodegaje</strong></th>
         <th><strong>Total USD</strong></th>
         <th><strong>Inspección</strong></th>
+        <th><strong>Fecha actualización</strong></th>
         <th><strong>Acciones</strong></th>
       </tr>
     </thead>
@@ -165,6 +166,7 @@
         <td> <strong>USD</strong> {{ data?.storage }}</td>
         <td> <strong>USD</strong> {{ data?.totalUSD }}</td>
         <td> <strong>USD</strong> {{ data?.inspection }}</td>
+        <td>{{data?.newDate | date: 'short'}}</td>
         <td>
           <a><button (click)="getPort(data?.portTerminal)" nz-button nzType="primary">Editar</button></a>
         </td>
