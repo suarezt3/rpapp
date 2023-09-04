@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { DataService } from 'src/app/services/data.service';
 import { ValidatorServices } from 'src/app/services/validator.service';
 
@@ -11,16 +12,28 @@ import { ValidatorServices } from 'src/app/services/validator.service';
 export class AgentFeesComponent implements OnInit {
 
   public myForm!         : FormGroup;
+  public data!           : any;
   public shippingCompany!: any;
   public isInputReadOnly : boolean = false;
   public total!          : number;
+  public status         : string = "";
 
-  constructor(private fb: FormBuilder, private dataService: DataService) {}
+  constructor(private fb: FormBuilder, private dataService: DataService, private notification: NzNotificationService) {}
 
   ngOnInit(){
 
+    /**
+     * Trae la lista de las navieras
+     */
     this.dataService.getShipping().subscribe((resp) => {
       this.shippingCompany = resp
+    })
+
+     /**
+     * Trae la lista de las navieras
+     */
+    this.dataService.getAgentFees().subscribe((resp) => {
+      this.data = resp
     })
 
     this.myForm = this.fb.group({
@@ -32,6 +45,10 @@ export class AgentFeesComponent implements OnInit {
       drop            : ["", [Validators.required]],
       upDate          : [new Date()]
     })
+  }
+
+  getShipping (shipping: string) {
+
   }
 
   /**
@@ -47,13 +64,50 @@ export class AgentFeesComponent implements OnInit {
 
   submit() {
     this.myForm.markAllAsTouched()
-    console.log("FORMULARIO", this.myForm.value);
-    this.dataService.createShippingFees(this.myForm.value).subscribe()
+    if(this.myForm.invalid) {
+      let status = "error"
+      this.notificationError(status)
+    }else {
+      this.dataService.createShippingFees(this.myForm.value).subscribe()
+      this.status = "success"
+      this.notificationSuccess(this.status)
+      this.myForm.reset()
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000);
+    }
   }
 
 
   editForm () {
 
+  }
+
+
+   /**
+  * La función `notificationError` crea una notificación con un mensaje de error.
+  * @param {string} type - El tipo de notificación a mostrar. Puede ser 'éxito', 'información',
+  * 'advertencia' o 'error'.
+  */
+   notificationError(type: string): void {
+    this.notification.create(
+      type,
+      'Error',
+      'No se pudo enviar los datos'
+    );
+  }
+
+/**
+  * La función `notificationError` crea una notificación con un mensaje de error.
+  * @param {string} type - El tipo de notificación a mostrar. Puede ser 'éxito', 'información',
+  * 'advertencia' o 'error'.
+  */
+notificationSuccess(type: string): void {
+  this.notification.create(
+    type,
+    'Excelente',
+    'Datos enviados con exito'
+    );
   }
 
 

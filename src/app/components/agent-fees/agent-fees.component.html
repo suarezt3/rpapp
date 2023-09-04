@@ -96,3 +96,34 @@
   </div>
 
 </div>
+
+<div>
+  <nz-table #basicTable [nzData]="data">
+    <thead>
+      <tr>
+        <th><strong>Naviera</strong></th>
+        <th><strong>Por contenedor</strong></th>
+        <th><strong>Por proceso</strong></th>
+        <th><strong>Total</strong></th>
+        <th><strong>Dias por contenedor</strong></th>
+        <th><strong>DROP</strong></th>
+        <th><strong>Fecha actualización</strong></th>
+        <th><strong>Acciones</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of data">
+        <td>{{ data?.shippingCompany }}</td>
+        <td> <strong>USD</strong> {{ data?.container }}</td>
+        <td> <strong>USD</strong> {{ data?.process }}</td>
+        <td> <strong>USD</strong> {{ data?.total }}</td>
+        <td> <strong>USD</strong> {{ data?.daysPerContainer }}</td>
+        <td> <strong>USD</strong> {{ data?.drop }}</td>
+        <td>{{data?.upDate | date: 'short'}}</td>
+        <td>
+          <a><button (click)="getShipping(data?.shippingCompany)" nz-button nzType="primary">Editar</button></a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

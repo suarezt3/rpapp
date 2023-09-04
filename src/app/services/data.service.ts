@@ -27,6 +27,19 @@ export class DataService {
 
 /**
  *
+ * @returns Trae la tabla las tarifas de los puertos
+ */
+getAgentFees() {
+  let headers = new HttpHeaders({
+    'apikey'       : environment.supabaseKey,
+    'Authorization': environment.authorization
+  })
+   return this.http.get<any>(`${this.apiURL}/agentFees`, {headers}).pipe()
+}
+
+
+/**
+ *
  * @returns Trae la lista de todos puertos
  */
 getPorts() {
