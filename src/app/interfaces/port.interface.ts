@@ -16,3 +16,15 @@ export interface PORTS {
   id             : string,
   namePort       : string,
 }
+
+export interface SHIPPING {
+  created_at      : string,
+  id              : string,
+  shippingCompany : string,
+  container       : number,
+  process         : number,
+  total           : number,
+  daysPerContainer: number,
+  drop            : number,
+  upDate          : string
+}

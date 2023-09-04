@@ -37,6 +37,17 @@ getAgentFees() {
    return this.http.get<any>(`${this.apiURL}/agentFees`, {headers}).pipe()
 }
 
+ /**
+ *
+ * @returns Trae la tabla la tarifa de una naviera individual
+ */
+ getShipphingFeesID(shipping: string) {
+  let headers = new HttpHeaders({
+    'apikey'       : environment.supabaseKey,
+    'Authorization': environment.authorization
+  })
+   return this.http.get<any>( `${this.apiURL}/agentFees?shippingCompany=eq.${shipping}`,{headers}).pipe()
+}
 
 /**
  *
@@ -78,6 +89,7 @@ getShipping() {
 }
 
 
+
 /**
  *
  * @returns enviar el formulario con las tarifas de un puerto
@@ -106,6 +118,12 @@ getShipping() {
 }
 
 
+/**
+ *
+ * @param port Para actualizar las tarifas de un puerto
+ * @param body
+ * @returns
+ */
  editPortFees(port: string, body: {}) {
   let headers = new HttpHeaders({
     'apikey'       : environment.supabaseKey,
@@ -115,5 +133,20 @@ getShipping() {
    return this.http.patch(`${this.apiURL}/portFees?portTerminal=eq.${port}`, body, {headers}).pipe()
 }
 
+
+/**
+ *
+ * @param shipping Para actualizar las tarifas de una naviera
+ * @param body
+ * @returns
+ */
+editShippingFees(shipping: string, body: {}) {
+  let headers = new HttpHeaders({
+    'apikey'       : environment.supabaseKey,
+    'Authorization': environment.authorization,
+    'Content-Type' : 'application/json',
+  })
+   return this.http.patch(`${this.apiURL}/agentFees?shippinCompany=eq.${shipping}`, body, {headers}).pipe()
+}
 
 }

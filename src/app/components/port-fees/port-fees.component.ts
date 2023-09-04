@@ -103,14 +103,14 @@ export class PortFeesComponent implements OnInit {
         this.port = resp
         this.portName = port
         this.myForm.patchValue({
-          portTerminal: resp[0]?.portTerminal,
+          portTerminal   : resp[0]?.portTerminal,
           useInstalations: resp[0]?.useInstalations,
-          relocation: resp[0]?.relocation,
-          storage: resp[0]?.storage,
-          weighing: resp[0]?.weighing,
-          totalUSD: resp[0]?.totalUSD,
-          load: resp[0]?.load,
-          inspection: resp[0]?.inspection
+          relocation     : resp[0]?.relocation,
+          storage        : resp[0]?.storage,
+          weighing       : resp[0]?.weighing,
+          totalUSD       : resp[0]?.totalUSD,
+          load           : resp[0]?.load,
+          inspection     : resp[0]?.inspection
         });
       })
       this.isInputReadOnly = true

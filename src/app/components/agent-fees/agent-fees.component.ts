@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { SHIPPING } from 'src/app/interfaces/port.interface';
 import { DataService } from 'src/app/services/data.service';
 import { ValidatorServices } from 'src/app/services/validator.service';
+import { ValidatorShippingServices } from 'src/app/services/validatorSipphing.service';
 
 @Component({
   selector: 'app-agent-fees',
@@ -16,9 +18,12 @@ export class AgentFeesComponent implements OnInit {
   public shippingCompany!: any;
   public isInputReadOnly : boolean = false;
   public total!          : number;
-  public status         : string = "";
+  public status          : string = "";
+  public isDisable1      : boolean = true;
+  public shipping!       : SHIPPING[];
+  public shippingName!    : string;
 
-  constructor(private fb: FormBuilder, private dataService: DataService, private notification: NzNotificationService) {}
+  constructor(private fb: FormBuilder, private dataService: DataService, private notification: NzNotificationService, private validatorShippingService: ValidatorShippingServices) {}
 
   ngOnInit(){
 
@@ -37,7 +42,7 @@ export class AgentFeesComponent implements OnInit {
     })
 
     this.myForm = this.fb.group({
-      shippingCompany : ["", [Validators.required]],
+      shippingCompany : ["", [Validators.required],[this.validatorShippingService]],
       container       : ["", [Validators.required]],
       process         : ["", [Validators.required]],
       total           : ["", [Validators.required]],
@@ -46,6 +51,22 @@ export class AgentFeesComponent implements OnInit {
       upDate          : [new Date()]
     })
   }
+
+
+
+  /**
+   *
+   * @param event Metodos para detectar los cambios en los campos del formulario
+   */
+  onInputChange1(event: any) {
+    this.total = this.myForm.get('container')?.value;
+    this.isDisable1 = false
+  }
+
+  onInputChange2(event: any) {
+    this.total = this.total + this.myForm.get('process')?.value;
+  }
+
 
   getShipping (shipping: string) {
 
@@ -78,9 +99,40 @@ export class AgentFeesComponent implements OnInit {
     }
   }
 
+  getShipphing (shipping: string) {
+    this.myForm.get('shippingCompany')?.setAsyncValidators(null)
+    this.dataService.getShipphingFeesID(shipping).subscribe((resp: SHIPPING[]) => {
+      console.log(resp);
+      this.shipping = resp
+      this.shippingName = shipping
+      this.myForm.patchValue({
+        shippingCompany : resp[0]?.shippingCompany,
+        container       : resp[0]?.container,
+        process         : resp[0]?.process,
+        total           : resp[0]?.total,
+        daysPerContainer: resp[0]?.daysPerContainer,
+        drop            : resp[0]?.drop,
+        upDate          : new Date()
+      })
+    })
+    this.isInputReadOnly = true
+  }
 
   editForm () {
-
+    this.myForm.markAllAsTouched()
+    if(this.myForm.invalid) {
+      let status = "error"
+      this.notificationError(status)
+    } else {
+      let form = this.myForm.value
+      this.dataService.editShippingFees(this.shippingName, form).subscribe()
+      this.status = "success"
+      this.notificationSuccess(this.status)
+      this.myForm.reset()
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000);
+    }
   }
 
 

@@ -19,7 +19,7 @@
           </nz-input-group>
           <div class="error" *ngIf="invalidField('shippingCompany')">
             <span *ngIf="myForm.controls?.['shippingCompany']?.errors?.['required']"> Campo obligatorio </span>
-            <span *ngIf="myForm.controls?.['shippingCompany']?.errors?.['shippingExist']"> Esta naviera ya esta registrada en labase de datos </span>
+            <span *ngIf="myForm.controls?.['shippingCompany']?.errors?.['shippingExist']"> Esta naviera ya esta registrada en la base de datos </span>
           </div>
         </div>
       </div>
@@ -29,7 +29,7 @@
         <div>
 
           <nz-input-number-group nzPrefix="USD" class="input">
-            <nz-input-number nzPlaceHolder="Ingresa la tarifa" formControlName="container"></nz-input-number>
+            <nz-input-number (change)="onInputChange1($event)" nzPlaceHolder="Ingresa la tarifa" formControlName="container"></nz-input-number>
           </nz-input-number-group>
           <div class="error" *ngIf="invalidField('container')">
             <span *ngIf="myForm.controls?.['container']?.errors?.['required']"> Campo obligatorio </span>
@@ -41,7 +41,7 @@
         <label>Por proceso</label>
         <div>
           <nz-input-number-group nzPrefix="USD" class="input">
-            <nz-input-number nzPlaceHolder="Ingresa la tarifa" formControlName="process"></nz-input-number>
+            <nz-input-number [nzDisabled]="isDisable1" (change)="onInputChange2($event)" nzPlaceHolder="Ingresa la tarifa" formControlName="process"></nz-input-number>
           </nz-input-number-group>
           <div class="error" *ngIf="invalidField('process')">
             <span *ngIf="myForm.controls?.['process']?.errors?.['required']"> Campo obligatorio </span>
@@ -55,7 +55,8 @@
         <label>Total</label>
         <div>
           <nz-input-number-group nzPrefix="USD" class="input">
-            <nz-input-number nzPlaceHolder="Ingresa la tarifa" formControlName="total"></nz-input-number>
+            <nz-input-number [(ngModel)]="total"
+            nzReadOnly nzPlaceHolder="Ingresa la tarifa" formControlName="total"></nz-input-number>
           </nz-input-number-group>
           <div class="error" *ngIf="invalidField('total')">
             <span *ngIf="myForm.controls?.['total']?.errors?.['required']"> Campo obligatorio </span>
@@ -121,7 +122,7 @@
         <td> <strong>USD</strong> {{ data?.drop }}</td>
         <td>{{data?.upDate | date: 'short'}}</td>
         <td>
-          <a><button (click)="getShipping(data?.shippingCompany)" nz-button nzType="primary">Editar</button></a>
+          <a><button (click)="getShipphing(data?.shippingCompany)" nz-button nzType="primary">Editar</button></a>
         </td>
       </tr>
     </tbody>
