@@ -146,7 +146,7 @@ editShippingFees(shipping: string, body: {}) {
     'Authorization': environment.authorization,
     'Content-Type' : 'application/json',
   })
-   return this.http.patch(`${this.apiURL}/agentFees?shippinCompany=eq.${shipping}`, body, {headers}).pipe()
+   return this.http.patch(`${this.apiURL}/agentFees?shippingCompany=eq.${shipping}`, body, {headers}).pipe()
 }
 
 }

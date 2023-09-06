@@ -125,6 +125,8 @@ export class AgentFeesComponent implements OnInit {
       this.notificationError(status)
     } else {
       let form = this.myForm.value
+      console.log("FORMULARIO", form);
+
       this.dataService.editShippingFees(this.shippingName, form).subscribe()
       this.status = "success"
       this.notificationSuccess(this.status)
