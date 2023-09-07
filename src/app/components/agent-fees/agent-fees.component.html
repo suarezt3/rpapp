@@ -92,14 +92,14 @@
   </div>
 
   <div>
-    <button  class="btn" (click)="submit()" nz-button nzType="primary">Enviar</button>
-    <button  class="btn" (click)="editForm()" nz-button nzType="primary">Actualizar</button>
+    <button *ngIf="!this.shippingName" class="btn" (click)="submit()" nz-button nzType="primary">Enviar</button>
+    <button *ngIf="this.shippingName"  class="btn" (click)="editForm()" nz-button nzType="primary">Actualizar</button>
   </div>
 
 </div>
 
 <div>
-  <nz-table #basicTable [nzData]="data">
+  <nz-table [nzData]="data" [nzScroll]="{ y: '240px' }">
     <thead>
       <tr>
         <th><strong>Naviera</strong></th>

@@ -23,6 +23,7 @@ export class AgentFeesComponent implements OnInit {
   public shipping!       : SHIPPING[];
   public shippingName!    : string;
 
+
   constructor(private fb: FormBuilder, private dataService: DataService, private notification: NzNotificationService, private validatorShippingService: ValidatorShippingServices) {}
 
   ngOnInit(){
@@ -163,6 +164,7 @@ notificationSuccess(type: string): void {
     'Datos enviados con exito'
     );
   }
+
 
 
 }
