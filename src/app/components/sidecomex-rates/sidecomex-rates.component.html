@@ -1,1 +1,34 @@
-<p>sidecomex-rates works!</p>
+<div class="form" [formGroup]="myForm" (ngSubmit)="submit()">
+
+  <h2>Gastos Sidecomex</h2>
+
+  <div class="form-inputs">
+
+    <div>
+      <label>Concepto</label>
+      <div>
+      <nz-input-group>
+        <nz-select [nzDisabled]="isInputReadOnly" nzPlaceHolder="Selecciona una opcion"
+          formControlName="concept" class="input">
+          <nz-option *ngFor="let item of concepts" [nzValue]="item?.concept"
+            [nzLabel]="item.concept"></nz-option>
+        </nz-select>
+      </nz-input-group>
+    </div>
+    </div>
+
+
+    <div>
+      <label>Valor</label>
+      <div>
+        <nz-input-number-group nzPrefix="USD" class="input">
+          <nz-input-number nzPlaceHolder="Ingresa la tarifa" formControlName="value"></nz-input-number>
+        </nz-input-number-group>
+      </div>
+    </div>
+  </div>
+  <div>
+    <button class="btn" nz-button nzType="primary" (click)="submit()">Enviar</button>
+  </div>
+
+</div>

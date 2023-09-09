@@ -12,6 +12,9 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
 
+
+//?-----------------------------------GET--------------------------------------
+
 /**
  *
  * @returns Trae la tabla las tarifas de los puertos
@@ -37,17 +40,6 @@ getAgentFees() {
    return this.http.get<any>(`${this.apiURL}/agentFees`, {headers}).pipe()
 }
 
- /**
- *
- * @returns Trae la tabla la tarifa de una naviera individual
- */
- getShipphingFeesID(shipping: string) {
-  let headers = new HttpHeaders({
-    'apikey'       : environment.supabaseKey,
-    'Authorization': environment.authorization
-  })
-   return this.http.get<any>( `${this.apiURL}/agentFees?shippingCompany=eq.${shipping}`,{headers}).pipe()
-}
 
 /**
  *
@@ -75,6 +67,31 @@ getShipping() {
 }
 
 
+/**
+ *
+ * @returns Trae la lista de todas la navieras
+ */
+getConcepts() {
+  let headers = new HttpHeaders({
+    'apikey'       : environment.supabaseKey,
+    'Authorization': environment.authorization
+  })
+   return this.http.get<any>(`${this.apiURL}/concepts`, {headers}).pipe()
+}
+
+
+ /**
+ *
+ * @returns Trae la tabla la tarifa de una naviera individual
+ */
+ getShipphingFeesID(shipping: string) {
+  let headers = new HttpHeaders({
+    'apikey'       : environment.supabaseKey,
+    'Authorization': environment.authorization
+  })
+   return this.http.get<any>( `${this.apiURL}/agentFees?shippingCompany=eq.${shipping}`,{headers}).pipe()
+}
+
 
  /**
  *
@@ -88,7 +105,7 @@ getShipping() {
    return this.http.get<any>( `${this.apiURL}/portFees?portTerminal=eq.${port}` , {headers}).pipe()
 }
 
-
+//?---------------------------------POST-------------------------------------------
 
 /**
  *
@@ -117,6 +134,8 @@ getShipping() {
    return this.http.post<any>(`${this.apiURL}/agentFees`, body, {headers})
 }
 
+
+//?------------------------------------PATCH-----------------------------------------
 
 /**
  *
