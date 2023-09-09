@@ -14,6 +14,10 @@
             [nzLabel]="item.concept"></nz-option>
         </nz-select>
       </nz-input-group>
+      <div class="error" *ngIf="invalidField('concept')">
+        <span *ngIf="myForm.controls?.['concept']?.errors?.['required']"> Campo obligatorio </span>
+        <span *ngIf="myForm.controls?.['concept']?.errors?.['conceptExist']"> Esta naviera ya esta registrada en la base de datos </span>
+      </div>
     </div>
     </div>
 
@@ -24,11 +28,35 @@
         <nz-input-number-group nzPrefix="USD" class="input">
           <nz-input-number nzPlaceHolder="Ingresa la tarifa" formControlName="value"></nz-input-number>
         </nz-input-number-group>
+        <div class="error" *ngIf="invalidField('value')">
+          <span *ngIf="myForm.controls?.['value']?.errors?.['required']"> Campo obligatorio </span>
+        </div>
       </div>
     </div>
   </div>
   <div>
     <button class="btn" nz-button nzType="primary" (click)="submit()">Enviar</button>
   </div>
-
+</div>
+<div>
+  <nz-table [nzData]="data" [nzShowPagination]="false" [nzScroll]="{ y: '300px' }">
+    <thead>
+      <tr>
+        <th><strong>Concepto</strong></th>
+        <th><strong>Valor</strong></th>
+        <th><strong>Fecha actualización</strong></th>
+        <th><strong>Acciones</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of data">
+        <td>{{ data?.concept }}</td>
+        <td> <strong>USD</strong> {{ data?.value }}</td>
+        <td>{{data?.upDate | date: 'short'}}</td>
+        <td>
+          <a><button (click)="getConcept(data?.concept)" nz-button nzType="primary">Editar</button></a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
 </div>

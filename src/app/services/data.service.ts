@@ -80,6 +80,18 @@ getConcepts() {
 }
 
 
+/**
+ *
+ * @returns Trae la lista de todas la navieras
+ */
+getSidecomexRates() {
+  let headers = new HttpHeaders({
+    'apikey'       : environment.supabaseKey,
+    'Authorization': environment.authorization
+  })
+   return this.http.get<any>(`${this.apiURL}/sidecomexRates`, {headers}).pipe()
+}
+
  /**
  *
  * @returns Trae la tabla la tarifa de una naviera individual
@@ -134,6 +146,19 @@ getConcepts() {
    return this.http.post<any>(`${this.apiURL}/agentFees`, body, {headers})
 }
 
+
+ /**
+ *
+ * @returns enviar el formulario con las tarifas de una naviera
+ */
+ createSidecomexRates(body: {}) {
+  let headers = new HttpHeaders({
+    'apikey'       : environment.supabaseKey,
+    'Authorization': environment.authorization,
+    'Content-Type' : 'application/json'
+  })
+   return this.http.post<any>(`${this.apiURL}/sidecomexRates`, body, {headers})
+}
 
 //?------------------------------------PATCH-----------------------------------------
 
