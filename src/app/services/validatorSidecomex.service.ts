@@ -8,9 +8,9 @@ import { environment } from '../../environments/environments';
 @Injectable({
   providedIn: 'root'
 })
-export class ValidatorShippingServices implements AsyncValidator {
+export class ValidatorConceptServices implements AsyncValidator {
 
-  private apiUrl        : string = environment.supabaseurl
+  private apiUrl: string = environment.supabaseurl
 
   constructor(private http: HttpClient) { }
 
@@ -19,15 +19,16 @@ export class ValidatorShippingServices implements AsyncValidator {
         'apikey'       : environment.supabaseKey,
         'Authorization': environment.authorization,
       })
-    const shipping = control.value.toUpperCase();
-    return this.http.get<any[]>(`${this.apiUrl}/agentFees?shippingCompany=eq.${ shipping }`, {headers})
+    const concept = control.value;
+    return this.http.get<any[]>(`${this.apiUrl}/sidecomexRates?concept=eq.${ concept}`, {headers})
                 .pipe(
                   map( resp => {
                     return ( resp.length === 0 )
                         ? null
-                        : { shippingExist: 'Esta naviera ya esta registrada en la base de datos' }
+                        : { conceptExist: 'Este item ya existe en la base de datos' }
                   })
                 );
   }
 
 }
+

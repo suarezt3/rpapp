@@ -20,8 +20,8 @@ export class AgentFeesComponent implements OnInit {
   public total!          : number;
   public status          : string = "";
   public isDisable1      : boolean = true;
-  public shipping!       : SHIPPING[];
   public shippingName!    : string;
+  //public shipping!       : SHIPPING[];
 
 
   constructor(private fb: FormBuilder, private dataService: DataService, private notification: NzNotificationService, private validatorShippingService: ValidatorShippingServices) {}
@@ -103,8 +103,7 @@ export class AgentFeesComponent implements OnInit {
   getShipphing (shipping: string) {
     this.myForm.get('shippingCompany')?.setAsyncValidators(null)
     this.dataService.getShipphingFeesID(shipping).subscribe((resp: SHIPPING[]) => {
-      console.log(resp);
-      this.shipping = resp
+     // this.shipping = resp
       this.shippingName = shipping
       this.myForm.patchValue({
         shippingCompany : resp[0]?.shippingCompany,

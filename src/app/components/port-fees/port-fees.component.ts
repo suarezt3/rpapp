@@ -14,15 +14,15 @@ export class PortFeesComponent implements OnInit {
 
   public myForm!        : FormGroup;
   public data!          : any[];
-  public ports!         : PORTS[]
+  public ports!         : PORTS[];
   public total!         : number;
-  public isDisable1     : boolean = true
-  public isDisable2     : boolean = true
-  public isDisable3     : boolean = true
-  public status         : string = ""
-  public port!          : PORTFEES[]
-  public portName!      : string
+  public isDisable1     : boolean = true;
+  public isDisable2     : boolean = true;
+  public isDisable3     : boolean = true;
+  public status         : string = "";
+  public portName!      : string;
   public isInputReadOnly: boolean = false;
+ // public port!          : PORTFEES[];
 
 
   constructor(private fb: FormBuilder, private dataService: DataService, private validatorServices: ValidatorServices,  private notification: NzNotificationService) {}
@@ -100,7 +100,7 @@ export class PortFeesComponent implements OnInit {
   getPort(port: string) {
     this.myForm.get('portTerminal')?.setAsyncValidators(null)
     this.dataService.getPortFeesID(port).subscribe((resp: PORTFEES[]) => {
-        this.port = resp
+        //this.port = resp
         this.portName = port
         this.myForm.patchValue({
           portTerminal   : resp[0]?.portTerminal,

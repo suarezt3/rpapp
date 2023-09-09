@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { CONCEPT } from 'src/app/interfaces/port.interface';
 import { DataService } from 'src/app/services/data.service';
+import { ValidatorConceptServices } from 'src/app/services/validatorSidecomex.service';
 
 @Component({
   selector: 'app-sidecomex-rates',
@@ -15,8 +17,10 @@ export class SidecomexRatesComponent implements OnInit {
   public concepts!       : any;
   public isInputReadOnly : boolean = false;
   public status          : string = "";
+  public conceptName!    : string;
+  //public concept!        : CONCEPT[]
 
-  constructor (private fb: FormBuilder, private dataService: DataService, private notification: NzNotificationService) {}
+  constructor (private fb: FormBuilder, private dataService: DataService, private validatorConceptService: ValidatorConceptServices, private notification: NzNotificationService) {}
 
   ngOnInit(): void {
 
@@ -39,7 +43,7 @@ export class SidecomexRatesComponent implements OnInit {
      * Formulario
      */
     this.myForm = this.fb.group({
-      concept: ["",[Validators.required]],
+      concept: ["",[Validators.required], [this.validatorConceptService]],
       value  : ["",[Validators.required]],
       upDate : [new Date()]
     })
@@ -61,7 +65,17 @@ export class SidecomexRatesComponent implements OnInit {
    * @param concept Metodo que obtiene el nombre del concepto para editar su valor
    */
   getConcept(concept: string) {
-
+    this.myForm.get('concept')?.setAsyncValidators(null)
+    this.dataService.getConceptID(concept).subscribe((resp: CONCEPT[]) => {
+      //this.concept = resp
+      this.conceptName = concept
+      this.myForm.patchValue({
+        concept :resp[0]?.concept,
+        value   :resp[0]?.value,
+        upDate  :new Date()
+      })
+    })
+    this.isInputReadOnly = true
   }
 
 
@@ -85,6 +99,25 @@ export class SidecomexRatesComponent implements OnInit {
     }
   }
 
+  /**
+   * Metodo para editar los datos
+   */
+  editForm () {
+    this.myForm.markAllAsTouched()
+    if(this.myForm.invalid) {
+      let status = "error"
+      this.notificationError(status)
+    } else {
+      let form = this.myForm.value
+      this.dataService.editConcept(this.conceptName, form).subscribe()
+      this.status = "success"
+      this.notificationSuccess(this.status)
+      this.myForm.reset()
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000);
+    }
+  }
 
 
    /**

@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environments';
 })
 export class DataService {
 
-  private apiURL= "https://iekthyollpfeqolwzaqu.supabase.co/rest/v1"
+  private apiURL: string = environment.supabaseurl
 
   constructor(private http: HttpClient) { }
 
@@ -117,6 +117,20 @@ getSidecomexRates() {
    return this.http.get<any>( `${this.apiURL}/portFees?portTerminal=eq.${port}` , {headers}).pipe()
 }
 
+/**
+ *
+ * @param concept Devuelve los datos de tabla que coincide con el concepto enviado
+ * @returns
+ */
+getConceptID(concept: string){
+  let headers = new HttpHeaders({
+    'apikey'       : environment.supabaseKey,
+    'Authorization': environment.authorization
+  })
+   return this.http.get<any>( `${this.apiURL}/sidecomexRates?concept=eq.${concept}` , {headers}).pipe()
+}
+
+
 //?---------------------------------POST-------------------------------------------
 
 /**
@@ -191,6 +205,21 @@ editShippingFees(shipping: string, body: {}) {
     'Content-Type' : 'application/json',
   })
    return this.http.patch(`${this.apiURL}/agentFees?shippingCompany=eq.${shipping}`, body, {headers}).pipe()
+}
+
+/**
+ *
+ * @param shipping Para actualizar las tarifas de los conceptos
+ * @param body
+ * @returns
+ */
+editConcept(concept: string, body: {}) {
+  let headers = new HttpHeaders({
+    'apikey'       : environment.supabaseKey,
+    'Authorization': environment.authorization,
+    'Content-Type' : 'application/json',
+  })
+   return this.http.patch(`${this.apiURL}/sidecomexRates?concept=eq.${concept}`, body, {headers}).pipe()
 }
 
 }

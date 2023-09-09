@@ -28,3 +28,11 @@ export interface SHIPPING {
   drop            : number,
   upDate          : string
 }
+
+export interface CONCEPT{
+  created_at      : string,
+  id              : string,
+  concept         : string,
+  value           : number,
+  upDate          : string
+}

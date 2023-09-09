@@ -10,7 +10,7 @@ import { environment } from '../../environments/environments';
 })
 export class ValidatorServices implements AsyncValidator {
 
-  private apiUrl        : string = "https://iekthyollpfeqolwzaqu.supabase.co/rest/v1/portFees?portTerminal=eq.";//URl para consultar los puertos en la base de datos
+  private apiUrl        : string = environment.supabaseurl
 
   constructor(private http: HttpClient) { }
 
@@ -20,7 +20,7 @@ export class ValidatorServices implements AsyncValidator {
         'Authorization': environment.authorization,
       })
     const port = control.value.toUpperCase();
-    return this.http.get<any[]>(`${this.apiUrl}${ port }`, {headers})
+    return this.http.get<any[]>(`${this.apiUrl}/portFees?portTerminal=eq.${ port }`, {headers})
                 .pipe(
                   map( resp => {
                     return ( resp.length === 0 )

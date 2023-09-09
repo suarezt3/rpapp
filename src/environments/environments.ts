@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  supabaseurl: "https://iekthyollpfeqolwzaqu.supabase.co/rest/v1/portFees",
+  supabaseurl: "https://iekthyollpfeqolwzaqu.supabase.co/rest/v1",
   supabaseKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlla3RoeW9sbHBmZXFvbHd6YXF1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTI1ODI1NjksImV4cCI6MjAwODE1ODU2OX0.-iTowuX_5K52_oOCLYb2DExFYdGlVIPPB3iPSrJzEIk",
   authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlla3RoeW9sbHBmZXFvbHd6YXF1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTI1ODI1NjksImV4cCI6MjAwODE1ODU2OX0.-iTowuX_5K52_oOCLYb2DExFYdGlVIPPB3iPSrJzEIk",
 };
