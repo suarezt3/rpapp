@@ -1,6 +1,6 @@
 <div class="form" [formGroup]="myForm" (ngSubmit)="submit()">
 
-  <h2>Gastos Sidecomex</h2>
+  <h2 class="title">Gastos Sidecomex</h2>
 
   <div class="form-inputs">
 
@@ -25,7 +25,7 @@
     <div>
       <label>Valor</label>
       <div>
-        <nz-input-number-group nzPrefix="USD" class="input">
+        <nz-input-number-group nzPrefix="$" class="input">
           <nz-input-number nzPlaceHolder="Ingresa la tarifa" formControlName="value"></nz-input-number>
         </nz-input-number-group>
         <div class="error" *ngIf="invalidField('value')">
@@ -54,12 +54,16 @@
     </thead>
     <tbody>
       <tr *ngFor="let data of data">
-        <td>{{ data?.concept }}</td>
-        <td> <strong>USD</strong> {{ data?.value }}</td>
+        <td>{{data?.concept }}</td>
+        <td>{{data?.value | currency:'COP': 'symbol-narrow':'1.0-2' }}</td>
         <td>{{data?.upDate | date: 'short'}}</td>
         <td>
           <a><button (click)="getConcept(data?.concept)" nz-button nzType="primary">Editar</button></a>
         </td>
+      </tr>
+      <tr>
+        <td><strong>Total: </strong></td>
+        <td>{{this.totalValue | currency:'COP': 'symbol-narrow':'1.0-2' }}</td>
       </tr>
     </tbody>
   </nz-table>

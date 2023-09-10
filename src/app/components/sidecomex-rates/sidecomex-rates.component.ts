@@ -18,6 +18,8 @@ export class SidecomexRatesComponent implements OnInit {
   public isInputReadOnly : boolean = false;
   public status          : string = "";
   public conceptName!    : string;
+  public totalValue!     : number;
+  public newData        : any[] = [];
   //public concept!        : CONCEPT[]
 
   constructor (private fb: FormBuilder, private dataService: DataService, private validatorConceptService: ValidatorConceptServices, private notification: NzNotificationService) {}
@@ -29,7 +31,6 @@ export class SidecomexRatesComponent implements OnInit {
      */
     this.dataService.getConcepts().subscribe((resp) => {
       this.concepts = resp
-      console.log(this.concepts);
     });
 
     /**
@@ -37,6 +38,8 @@ export class SidecomexRatesComponent implements OnInit {
      */
     this.dataService.getSidecomexRates().subscribe((resp) => {
       this.data = resp
+      const newArray = resp.filter((objeto: { ADDS: boolean; }) => objeto.ADDS === true);
+      this.totalValue = newArray.reduce((acumulador: number, objeto: any) => acumulador + objeto.value, 0);
     })
 
     /**
