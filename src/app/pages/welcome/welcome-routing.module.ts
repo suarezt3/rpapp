@@ -7,13 +7,16 @@ import { AgentFeesComponent } from 'src/app/components/agent-fees/agent-fees.com
 import { SidecomexRatesComponent } from 'src/app/components/sidecomex-rates/sidecomex-rates.component';
 import { TerrestrialRatesComponent } from 'src/app/components/terrestrial-rates/terrestrial-rates.component';
 import { OtherFeesComponent } from 'src/app/components/other-fees/other-fees.component';
+import { TransportationBuenaventuraComponent } from 'src/app/components/transportation-buenaventura/transportation-buenaventura.component';
+import { TransportationCartagenaComponent } from 'src/app/components/transportation-cartagena/transportation-cartagena.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
   { path: 'tarifa-puerto', component: PortFeesComponent },
   { path: 'tarifa-agente-naviera', component: AgentFeesComponent },
   { path: 'tarifa-sidecomex', component: SidecomexRatesComponent },
-  { path: 'tarifa-transporte-terrestre', component: TerrestrialRatesComponent },
+  { path: 'buenaventura', component: TransportationBuenaventuraComponent },
+  { path: 'cartagena', component: TransportationCartagenaComponent },
   { path: 'otras-tarifas', component: OtherFeesComponent },
   { path: 'reporte', component: ReportComponent }
 ];

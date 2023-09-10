@@ -8,6 +8,8 @@ import { TerrestrialRatesComponent } from './terrestrial-rates/terrestrial-rates
 import { OtherFeesComponent } from './other-fees/other-fees.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgzorroModule } from '../ngzorro/ngzorro.module';
+import { TransportationCartagenaComponent } from './transportation-cartagena/transportation-cartagena.component';
+import { TransportationBuenaventuraComponent } from './transportation-buenaventura/transportation-buenaventura.component';
 
 
 
@@ -18,7 +20,9 @@ import { NgzorroModule } from '../ngzorro/ngzorro.module';
     AgentFeesComponent,
     SidecomexRatesComponent,
     TerrestrialRatesComponent,
-    OtherFeesComponent
+    OtherFeesComponent,
+    TransportationCartagenaComponent,
+    TransportationBuenaventuraComponent
   ],
   imports: [
     CommonModule,
