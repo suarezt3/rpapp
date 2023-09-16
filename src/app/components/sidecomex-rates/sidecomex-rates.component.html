@@ -5,7 +5,7 @@
   <div class="form-inputs">
 
     <div>
-      <label>Concepto</label>
+      <label class="text-label">Concepto</label>
       <div>
       <nz-input-group>
         <nz-select [nzDisabled]="isInputReadOnly" nzPlaceHolder="Selecciona una opcion"
@@ -23,7 +23,7 @@
 
 
     <div>
-      <label>Valor</label>
+      <label class="text-label">Valor</label>
       <div>
         <nz-input-number-group nzPrefix="$" class="input">
           <nz-input-number nzPlaceHolder="Ingresa la tarifa" formControlName="value"></nz-input-number>
@@ -43,17 +43,40 @@
 <hr>
 
 <div>
-  <nz-table [nzData]="data" [nzShowPagination]="false" [nzScroll]="{ y: '1000px' }">
+  <nz-table [nzData]="dataFalse" [nzShowPagination]="false" [nzScroll]="{ y: '1000px' }">
     <thead>
       <tr>
-        <th><strong>Concepto</strong></th>
-        <th><strong>Valor</strong></th>
-        <th><strong>Fecha actualización</strong></th>
-        <th><strong>Acciones</strong></th>
+        <th class="table-head"><strong>Concepto</strong></th>
+        <th class="table-head"><strong>Valor</strong></th>
+        <th class="table-head"><strong>Fecha actualización</strong></th>
+        <th class="table-head"><strong>Acciones</strong></th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of data">
+      <tr *ngFor="let data of dataFalse">
+        <td>{{data?.concept }}</td>
+        <td>{{data?.value | currency:'COP': 'symbol-narrow':'1.0-2' }}</td>
+        <td>{{data?.upDate | date: 'short'}}</td>
+        <td>
+          <a><button (click)="getConcept(data?.concept)" nz-button nzType="primary">Editar</button></a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+  <hr>
+
+  <nz-table [nzData]="dataTrue" [nzShowPagination]="false" [nzScroll]="{ y: '1000px' }">
+    <thead>
+      <tr>
+        <th class="table-head"><strong>Concepto</strong></th>
+        <th class="table-head"><strong>Valor</strong></th>
+        <th class="table-head"><strong>Fecha actualización</strong></th>
+        <th class="table-head"><strong>Acciones</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of dataTrue">
         <td>{{data?.concept }}</td>
         <td>{{data?.value | currency:'COP': 'symbol-narrow':'1.0-2' }}</td>
         <td>{{data?.upDate | date: 'short'}}</td>
@@ -67,4 +90,6 @@
       </tr>
     </tbody>
   </nz-table>
+
+
 </div>

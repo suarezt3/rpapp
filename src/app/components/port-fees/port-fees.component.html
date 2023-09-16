@@ -5,7 +5,7 @@
   <div class="form-inputs">
     <section>
       <div>
-        <label for="port">Terminal portuario</label>
+        <label for="port" class="text-label">Terminal portuario</label>
         <div>
           <nz-input-group>
                <nz-select [nzDisabled]="isInputReadOnly" nzPlaceHolder="Selecciona una terminal" formControlName="portTerminal" class="input">
@@ -20,7 +20,7 @@
         </div>
       </div>
       <div>
-        <label>Uso de instalaciones</label>
+        <label class="text-label">Uso de instalaciones</label>
         <div>
           <nz-input-number-group nzPrefix="USD" class="input">
             <nz-input-number
@@ -35,7 +35,7 @@
         </div>
       </div>
       <div>
-        <label>Pesaje</label>
+        <label class="text-label">Pesaje</label>
         <div>
           <nz-input-number-group nzPrefix="USD" class="input">
             <nz-input-number
@@ -51,7 +51,7 @@
         </div>
       </div>
       <div>
-        <label>Cargue</label>
+        <label class="text-label">Cargue</label>
         <div>
           <nz-input-number-group nzPrefix="USD" class="input">
             <nz-input-number
@@ -69,7 +69,7 @@
     </section>
     <section>
       <div>
-        <label>Reubicación</label>
+        <label class="text-label">Reubicación</label>
         <div>
           <nz-input-number-group nzPrefix="USD" class="input">
             <nz-input-number
@@ -85,7 +85,7 @@
         </div>
       </div>
       <div>
-        <label>Bodegaje</label>
+        <label class="text-label">Bodegaje</label>
         <div>
           <nz-input-number-group nzPrefix="USD" class="input">
             <nz-input-number
@@ -99,7 +99,7 @@
         </div>
       </div>
       <div>
-        <label>Total USD</label>
+        <label class="text-label">Total USD</label>
         <div>
           <nz-input-number-group nzPrefix="USD" class="input">
             <nz-input-number
@@ -115,7 +115,7 @@
         </div>
       </div>
       <div>
-        <label>Inspección</label>
+        <label class="text-label">Inspección</label>
         <div>
           <nz-input-number-group nzPrefix="USD" class="input">
             <nz-input-number
@@ -144,16 +144,16 @@
   <nz-table #basicTable [nzData]="data" [nzShowPagination]="false" [nzScroll]="{y: '300px'}">
     <thead>
       <tr>
-        <th><strong>Terminal portuario</strong></th>
-        <th><strong>Uso de instalaciones</strong></th>
-        <th><strong>Pesaje</strong></th>
-        <th><strong>Cargue</strong></th>
-        <th><strong>Reubicación</strong></th>
-        <th><strong>Bodegaje</strong></th>
-        <th><strong>Total USD</strong></th>
-        <th><strong>Inspección</strong></th>
-        <th><strong>Fecha actualización</strong></th>
-        <th><strong>Acciones</strong></th>
+        <th class="table-head"><strong>Terminal portuario</strong></th>
+        <th class="table-head"><strong>Uso de instalaciones</strong></th>
+        <th class="table-head"><strong>Pesaje</strong></th>
+        <th class="table-head"><strong>Cargue</strong></th>
+        <th class="table-head"><strong>Reubicación</strong></th>
+        <th class="table-head"><strong>Bodegaje</strong></th>
+        <th class="table-head"><strong>Total USD</strong></th>
+        <th class="table-head"><strong>Inspección</strong></th>
+        <th class="table-head"><strong>Fecha actualización</strong></th>
+        <th class="table-head"><strong>Acciones</strong></th>
       </tr>
     </thead>
     <tbody>

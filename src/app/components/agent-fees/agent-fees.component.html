@@ -8,7 +8,7 @@
 
     <section>
       <div>
-        <label>Naviera / FF</label>
+        <label class="text-label"> Naviera / FF</label>
         <div>
           <nz-input-group>
             <nz-select [nzDisabled]="isInputReadOnly" nzPlaceHolder="Selecciona una naviera"
@@ -25,7 +25,7 @@
       </div>
 
       <div>
-        <label>Por contenedor</label>
+        <label class="text-label">Por contenedor</label>
         <div>
 
           <nz-input-number-group nzPrefix="USD" class="input">
@@ -38,7 +38,7 @@
       </div>
 
       <div>
-        <label>Por proceso</label>
+        <label class="text-label">Por proceso</label>
         <div>
           <nz-input-number-group nzPrefix="USD" class="input">
             <nz-input-number [nzDisabled]="isDisable1" (change)="onInputChange2($event)" nzPlaceHolder="Ingresa la tarifa" formControlName="process"></nz-input-number>
@@ -52,7 +52,7 @@
     <section>
 
       <div>
-        <label>Total</label>
+        <label class="text-label">Total</label>
         <div>
           <nz-input-number-group nzPrefix="USD" class="input">
             <nz-input-number [(ngModel)]="total"
@@ -65,7 +65,7 @@
       </div>
 
       <div>
-        <label>Dias demoras por contador</label>
+        <label class="text-label">Dias demoras por contador</label>
         <div>
           <nz-input-number-group nzPrefix="USD" class="input">
             <nz-input-number nzPlaceHolder="Ingresa la tarifa" formControlName="daysPerContainer"></nz-input-number>
@@ -77,7 +77,7 @@
       </div>
 
       <div>
-        <label>DROP OFF</label>
+        <label class="text-label">DROP OFF</label>
         <div>
           <nz-input-number-group nzPrefix="USD" class="input">
             <nz-input-number nzPlaceHolder="Ingresa la tarifa" formControlName="drop"></nz-input-number>
@@ -104,14 +104,14 @@
   <nz-table [nzData]="data" [nzShowPagination]="false" [nzScroll]="{ y: '300px' }">
     <thead>
       <tr>
-        <th><strong>Naviera</strong></th>
-        <th><strong>Por contenedor</strong></th>
-        <th><strong>Por proceso</strong></th>
-        <th><strong>Total</strong></th>
-        <th><strong>Dias por contenedor</strong></th>
-        <th><strong>DROP</strong></th>
-        <th><strong>Fecha actualización</strong></th>
-        <th><strong>Acciones</strong></th>
+        <th class="table-head"><strong>Naviera</strong></th>
+        <th class="table-head"><strong>Por contenedor</strong></th>
+        <th class="table-head"><strong>Por proceso</strong></th>
+        <th class="table-head"><strong>Total</strong></th>
+        <th class="table-head"><strong>Dias por contenedor</strong></th>
+        <th class="table-head"><strong>DROP</strong></th>
+        <th class="table-head"><strong>Fecha actualización</strong></th>
+        <th class="table-head"><strong>Acciones</strong></th>
       </tr>
     </thead>
     <tbody>
