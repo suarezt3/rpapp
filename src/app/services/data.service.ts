@@ -119,6 +119,18 @@ getTransportersBuenaventura() {
 
 /**
  *
+ * @returns Trae las tarifas de las transportadoras de buenaventura-cali
+ */
+getTransportersCartagena() {
+  let headers = new HttpHeaders({
+    'apikey'       : environment.supabaseKey,
+    'Authorization': environment.authorization
+  })
+   return this.http.get<any>(`${this.apiURL}/transportersCartagena`, {headers}).pipe()
+}
+
+/**
+ *
  * @returns Trae la lista de las transportadoras de Cartagena
  */
 getCartagenaTransporters() {
@@ -181,6 +193,19 @@ getTransporterID(transporter: string){
    return this.http.get<any>( `${this.apiURL}/transportersBuenaventura?buenaventuraCali=eq.${transporter}` , {headers}).pipe()
 }
 
+/**
+ *
+ * @param concept Devuelve los datos de tabla que coincide con el concepto enviado
+ * @returns
+ */
+getCartagenaTransporterID(transporter: string){
+  let headers = new HttpHeaders({
+    'apikey'       : environment.supabaseKey,
+    'Authorization': environment.authorization
+  })
+   return this.http.get<any>( `${this.apiURL}/transportersCartagena?cartagenaMalambo=eq.${transporter}` , {headers}).pipe()
+}
+
 
 //?---------------------------------POST-------------------------------------------
 
@@ -236,6 +261,19 @@ createtBuenaventuraTransporters(body: {}) {
   })
    return this.http.post<any>(`${this.apiURL}/transportersBuenaventura`, body, {headers}).pipe()
 }
+
+/**
+ *
+ * @returns Tenviar el formulario con las tarifas de transportes buenaventura-cali
+ */
+createtCartagenaTransporters(body: {}) {
+  let headers = new HttpHeaders({
+    'apikey'       : environment.supabaseKey,
+    'Authorization': environment.authorization
+  })
+   return this.http.post<any>(`${this.apiURL}/transportersCartagena`, body, {headers}).pipe()
+}
+
 
 
 
@@ -300,6 +338,21 @@ editTransporter(transporter: string, body: {}) {
     'Content-Type' : 'application/json',
   })
    return this.http.patch(`${this.apiURL}/transportersBuenaventura?buenaventuraCali=eq.${transporter}`, body, {headers}).pipe()
+}
+
+/**
+ *
+ * @param shipping Para actualizar las tarifas de los conceptos
+ * @param body
+ * @returns
+ */
+editCartagenaTransporter(transporter: string, body: {}) {
+  let headers = new HttpHeaders({
+    'apikey'       : environment.supabaseKey,
+    'Authorization': environment.authorization,
+    'Content-Type' : 'application/json',
+  })
+   return this.http.patch(`${this.apiURL}/transportersCartagena?cartagenaMalambo=eq.${transporter}`, body, {headers}).pipe()
 }
 
 }

@@ -38,13 +38,15 @@ export interface CONCEPT{
 }
 
 export interface TRANSPORTER {
-  created_at      : string,
-  id              : string,
-  buenaventuraCali: string,
-  yard            : number,
-  return          : number,
-  download        : number,
-  aguadulce       : number,
-  standBy         : number,
-  upDate          : string
+  created_at        : string,
+  id                : string,
+  buenaventuraCali? : string,
+  cartagenaMalambo? : string,
+  yard              : number,
+  return?           : number,
+  download          : number,
+  aguadulce?        : number,
+  standBy?          : number,
+  port?             : number,
+  upDate            : string
 }

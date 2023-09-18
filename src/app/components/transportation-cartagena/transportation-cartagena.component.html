@@ -1,1 +1,104 @@
-<p>transportation-cartagena works!</p>
+<div class="form" [formGroup]="myForm" (ngSubmit)="submit()" >
+
+  <h2 class="title">Tarifas Cartagena - Malambo </h2>
+
+  <div class="form-inputs">
+    <section>
+      <div>
+        <label for="port" class="text-label">Trasnportadora</label>
+        <div>
+          <nz-input-group>
+               <nz-select [nzDisabled]="isInputReadOnly" nzPlaceHolder="Selecciona una terminal" formControlName="cartagenaMalambo" class="input">
+                <nz-option *ngFor="let item of dataTransporters" [nzValue]="item?.transporters" [nzLabel]="item.transporters"></nz-option>
+              </nz-select>
+
+              </nz-input-group>
+              <div class="error" *ngIf="invalidField('cartagenaMalambo')" >
+                <span  *ngIf="myForm.controls?.['cartagenaMalambo']?.errors?.['required']" > Campo obligatorio </span>
+                <span  *ngIf="myForm.controls?.['cartagenaMalambo']?.errors?.['transporterExist']" > Esta transportadora ya existe en la base de datos </span>
+              </div>
+        </div>
+      </div>
+      <div>
+        <label class="text-label">Patio</label>
+        <div>
+          <nz-input-number-group nzPrefix="$" class="input">
+            <nz-input-number
+              nzPlaceHolder="Ingresa la tarifa"
+              formControlName="yard"
+            ></nz-input-number>
+          </nz-input-number-group>
+          <div class="error" *ngIf="invalidField('yard')" >
+            <span  *ngIf="myForm.controls?.['yard']?.errors?.['required']" > Campo obligatorio </span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div>
+        <label class="text-label">Puerto</label>
+        <div>
+          <nz-input-number-group nzPrefix="$" class="input">
+            <nz-input-number
+              nzPlaceHolder="Ingresa una tarifa"
+              formControlName="port"
+            ></nz-input-number>
+          </nz-input-number-group>
+          <div class="error" *ngIf="invalidField('port')" >
+            <span  *ngIf="myForm.controls?.['port']?.errors?.['required']" > Campo obligatorio </span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label class="text-label">Descargue</label>
+        <div>
+          <nz-input-number-group nzPrefix="$" class="input">
+            <nz-input-number
+              nzPlaceHolder="Ingresa una tarifa"
+              formControlName="download"
+            ></nz-input-number>
+          </nz-input-number-group>
+          <div class="error" *ngIf="invalidField('download')" >
+            <span  *ngIf="myForm.controls?.['download']?.errors?.['required']" > Campo obligatorio </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+<div>
+  <button *ngIf="!this.transporterName" class="btn" (click)="submit()" nz-button nzType="primary">Enviar</button>
+  <button *ngIf="this.transporterName" class="btn" (click)="editForm()" nz-button nzType="primary">Actualizar</button>
+</div>
+</div>
+
+<hr>
+
+<div>
+  <nz-table #basicTable [nzData]="data" [nzShowPagination]="false" [nzScroll]="{y: '300px'}">
+    <thead>
+      <tr>
+        <th class="table-head"><strong>Transportadora</strong></th>
+        <th class="table-head"><strong>Patio</strong></th>
+        <th class="table-head"><strong>Puerto</strong></th>
+        <th class="table-head"><strong>Descargue</strong></th>
+        <th class="table-head"><strong>Fecha actualización</strong></th>
+        <th class="table-head"><strong>Acciones</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of data">
+        <td>{{ data?.cartagenaMalambo }}</td>
+        <td>{{ data?.yard | currency:'COP': 'symbol-narrow':'1.0-2' }}</td>
+        <td>{{ data?.port | currency:'COP': 'symbol-narrow':'1.0-2' }}</td>
+        <td>{{ data?.download | currency:'COP': 'symbol-narrow':'1.0-2' }}</td>
+        <td>{{ data?.upDate | date: 'short'}}</td>
+        <td>
+          <a><button (click)="getTransporters(data?.cartagenaMalambo)" nz-button nzType="primary">Editar</button></a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
+
