@@ -19,7 +19,6 @@ export class PortFeesComponent implements OnInit {
   public isDisable1     : boolean = true;
   public isDisable2     : boolean = true;
   public isDisable3     : boolean = true;
-  public status         : string = "";
   public portName!      : string;
   public isInputReadOnly: boolean = false;
  // public port!          : PORTFEES[];
@@ -97,6 +96,11 @@ export class PortFeesComponent implements OnInit {
   }
 
 
+  /**
+   * La función `getPort` recupera información de tarifas portuarias en función de un nombre de puerto
+   * determinado y actualiza los campos del formulario con los valores correspondientes.
+   * @param {string} port - El parámetro `port` es una cadena que representa el nombre de un puerto.
+   */
   getPort(port: string) {
     this.myForm.get('portTerminal')?.setAsyncValidators(null)
     this.dataService.getPortFeesID(port).subscribe((resp: PORTFEES[]) => {
@@ -116,6 +120,12 @@ export class PortFeesComponent implements OnInit {
       this.isInputReadOnly = true
     }
 
+/**
+ * La función `editForm` se utiliza para manejar el envío de un formulario, marcando todos los campos
+ * como tocados, validando el formulario y luego mostrando una notificación de error o enviando los
+ * datos del formulario al servidor, mostrando una notificación de éxito, restableciendo el formulario,
+ * y recargando la página.
+ */
   editForm() {
     this.myForm.markAllAsTouched()
     if(this.myForm.invalid) {
@@ -124,14 +134,13 @@ export class PortFeesComponent implements OnInit {
     } else {
       let form = this.myForm.value
       this.dataService.editPortFees(this.portName, form).subscribe()
-      this.status = "success"
-      this.notificationSuccess(this.status)
+      let status = "success"
+      this.notificationSuccess(status)
       this.myForm.reset()
       setTimeout(() => {
         window.location.reload()
       }, 1000);
     }
-
   }
 
   /**
@@ -145,8 +154,8 @@ export class PortFeesComponent implements OnInit {
       this.notificationError(status)
     }else {
       this.dataService.createPortFees(this.myForm.value).subscribe()
-      this.status = "success"
-      this.notificationSuccess(this.status)
+      let status = "success"
+      this.notificationSuccess(status)
       this.myForm.reset()
       setTimeout(() => {
         window.location.reload()

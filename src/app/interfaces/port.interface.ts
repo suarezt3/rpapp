@@ -36,3 +36,15 @@ export interface CONCEPT{
   value           : number,
   upDate          : string
 }
+
+export interface TRANSPORTER {
+  created_at      : string,
+  id              : string,
+  buenaventuraCali: string,
+  yard            : number,
+  return          : number,
+  download        : number,
+  aguadulce       : number,
+  standBy         : number,
+  upDate          : string
+}

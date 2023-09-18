@@ -1,1 +1,137 @@
-<p>transportation-buenaventura works!</p>
+<div class="form" [formGroup]="myForm" (ngSubmit)="submit()" >
+
+  <h2 class="title">Tarifas Buenaventura - Cali </h2>
+
+  <div class="form-inputs">
+    <section>
+      <div>
+        <label for="port" class="text-label">Trasnportadora</label>
+        <div>
+          <nz-input-group>
+               <nz-select [nzDisabled]="isInputReadOnly" nzPlaceHolder="Selecciona una terminal" formControlName="buenaventuraCali" class="input">
+                <nz-option *ngFor="let item of dataTransporters" [nzValue]="item?.transporter" [nzLabel]="item.transporter"></nz-option>
+              </nz-select>
+
+              </nz-input-group>
+              <div class="error" *ngIf="invalidField('buenaventuraCali')" >
+                <span  *ngIf="myForm.controls?.['buenaventuraCali']?.errors?.['required']" > Campo obligatorio </span>
+                <span  *ngIf="myForm.controls?.['buenaventuraCali']?.errors?.['transporterExist']" > Esta transportadora ya existe en la base de datos </span>
+              </div>
+        </div>
+      </div>
+      <div>
+        <label class="text-label">Patio</label>
+        <div>
+          <nz-input-number-group nzPrefix="$" class="input">
+            <nz-input-number
+              nzPlaceHolder="Ingresa la tarifa"
+              formControlName="yard"
+            ></nz-input-number>
+          </nz-input-number-group>
+          <div class="error" *ngIf="invalidField('yard')" >
+            <span  *ngIf="myForm.controls?.['yard']?.errors?.['required']" > Campo obligatorio </span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label class="text-label">Devolucion</label>
+        <div>
+          <nz-input-number-group nzPrefix="$" class="input">
+            <nz-input-number
+              nzPlaceHolder="Ingresa una tarifa"
+              formControlName="return"
+            ></nz-input-number>
+          </nz-input-number-group>
+          <div class="error" *ngIf="invalidField('return')" >
+            <span  *ngIf="myForm.controls?.['return']?.errors?.['required']" > Campo obligatorio </span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+    <section>
+      <div>
+        <label class="text-label">Descargue</label>
+        <div>
+          <nz-input-number-group nzPrefix="$" class="input">
+            <nz-input-number
+              nzPlaceHolder="Ingresa una tarifa"
+              formControlName="download"
+            ></nz-input-number>
+          </nz-input-number-group>
+          <div class="error" *ngIf="invalidField('download')" >
+            <span  *ngIf="myForm.controls?.['download']?.errors?.['required']" > Campo obligatorio </span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label class="text-label">Aguadulce</label>
+        <div>
+          <nz-input-number-group nzPrefix="$" class="input">
+            <nz-input-number
+              nzPlaceHolder="Ingresa una tarifa"
+              formControlName="aguadulce"
+            ></nz-input-number>
+          </nz-input-number-group>
+          <div class="error" *ngIf="invalidField('aguadulce')" >
+            <span  *ngIf="myForm.controls?.['aguadulce']?.errors?.['required']" > Campo obligatorio </span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label class="text-label">Stand By</label>
+        <div>
+          <nz-input-number-group nzPrefix="USD" class="input">
+            <nz-input-number
+              nzPlaceHolder="Ingresa una tarifa"
+              formControlName="standBy"
+            ></nz-input-number>
+          </nz-input-number-group>
+          <div class="error" *ngIf="invalidField('standBy')" >
+            <span  *ngIf="myForm.controls?.['standBy']?.errors?.['required']" > Campo obligatorio </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+<div>
+  <button *ngIf="!this.transporterName" class="btn" (click)="submit()" nz-button nzType="primary">Enviar</button>
+  <button *ngIf="this.transporterName" class="btn" (click)="editForm()" nz-button nzType="primary">Actualizar</button>
+</div>
+</div>
+
+<hr>
+
+<div>
+  <nz-table #basicTable [nzData]="data" [nzShowPagination]="false" [nzScroll]="{y: '300px'}">
+    <thead>
+      <tr>
+        <th class="table-head"><strong>Transportadora</strong></th>
+        <th class="table-head"><strong>Patio</strong></th>
+        <th class="table-head"><strong>Devolucion</strong></th>
+        <th class="table-head"><strong>Descargue</strong></th>
+        <th class="table-head"><strong>Aguadulce</strong></th>
+        <th class="table-head"><strong>Stand By</strong></th>
+        <th class="table-head"><strong>Fecha actualización</strong></th>
+        <th class="table-head"><strong>Acciones</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of data">
+        <td>{{ data?.buenaventuraCali }}</td>
+        <td>{{ data?.yard | currency:'COP': 'symbol-narrow':'1.0-2' }}</td>
+        <td>{{ data?.return | currency:'COP': 'symbol-narrow':'1.0-2' }}</td>
+        <td>{{ data?.download | currency:'COP': 'symbol-narrow':'1.0-2' }}</td>
+        <td>{{ data?.aguadulce | currency:'COP': 'symbol-narrow':'1.0-2' }}</td>
+        <td>{{ data?.standBy | currency:'COP': 'symbol-narrow':'1.0-2' }}</td>
+        <td>{{ data?.upDate | date: 'short'}}</td>
+        <td>
+          <a><button (click)="getTransporters(data?.buenaventuraCali)" nz-button nzType="primary">Editar</button></a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

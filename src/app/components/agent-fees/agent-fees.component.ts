@@ -18,7 +18,6 @@ export class AgentFeesComponent implements OnInit {
   public shippingCompany!: any;
   public isInputReadOnly : boolean = false;
   public total!          : number;
-  public status          : string = "";
   public isDisable1      : boolean = true;
   public shippingName!    : string;
   //public shipping!       : SHIPPING[];
@@ -68,11 +67,6 @@ export class AgentFeesComponent implements OnInit {
     this.total = this.total + this.myForm.get('process')?.value;
   }
 
-
-  getShipping (shipping: string) {
-
-  }
-
   /**
    *
    * Para validar los campos del formulario
@@ -84,6 +78,10 @@ export class AgentFeesComponent implements OnInit {
   }
 
 
+/**
+ * La función de envío verifica si el formulario es válido, crea tarifas de envío si lo es y muestra
+ * notificaciones de éxito o error en consecuencia.
+ */
   submit() {
     this.myForm.markAllAsTouched()
     if(this.myForm.invalid) {
@@ -91,8 +89,8 @@ export class AgentFeesComponent implements OnInit {
       this.notificationError(status)
     }else {
       this.dataService.createShippingFees(this.myForm.value).subscribe()
-      this.status = "success"
-      this.notificationSuccess(this.status)
+      let status = "success"
+      this.notificationSuccess(status)
       this.myForm.reset()
       setTimeout(() => {
         window.location.reload()
@@ -100,6 +98,12 @@ export class AgentFeesComponent implements OnInit {
     }
   }
 
+  /**
+   * La función `getShipping` recupera información de envío según un ID de envío determinado y
+   * actualiza los campos del formulario en consecuencia.
+   * @param {string} shipping - El parámetro "envío" es una cadena que representa el método u opción de
+   * envío seleccionado por el usuario.
+   */
   getShipphing (shipping: string) {
     this.myForm.get('shippingCompany')?.setAsyncValidators(null)
     this.dataService.getShipphingFeesID(shipping).subscribe((resp: SHIPPING[]) => {
@@ -118,6 +122,12 @@ export class AgentFeesComponent implements OnInit {
     this.isInputReadOnly = true
   }
 
+
+  /**
+   * La función editForm verifica si el formulario es válido y, de ser así, envía los datos del
+   * formulario al servidor, muestra una notificación de éxito, restablece el formulario y recarga la
+   * página después de un retraso.
+   */
   editForm () {
     this.myForm.markAllAsTouched()
     if(this.myForm.invalid) {
@@ -126,10 +136,9 @@ export class AgentFeesComponent implements OnInit {
     } else {
       let form = this.myForm.value
       console.log("FORMULARIO", form);
-
       this.dataService.editShippingFees(this.shippingName, form).subscribe()
-      this.status = "success"
-      this.notificationSuccess(this.status)
+      let status = "success"
+      this.notificationSuccess(status)
       this.myForm.reset()
       setTimeout(() => {
         window.location.reload()

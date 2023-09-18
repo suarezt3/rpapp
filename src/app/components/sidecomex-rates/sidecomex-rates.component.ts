@@ -16,7 +16,6 @@ export class SidecomexRatesComponent implements OnInit {
   public data!           : any;
   public concepts!       : any;
   public isInputReadOnly : boolean = false;
-  public status          : string = "";
   public conceptName!    : string;
   public totalValue!     : number;
   public dataTrue        : any[] = [];
@@ -88,15 +87,14 @@ export class SidecomexRatesComponent implements OnInit {
    * Metodo para enviar el formulario
    */
   submit(){
-    console.log(this.myForm.value);
     this.myForm.markAllAsTouched()
     if(this.myForm.invalid) {
       let status = "error"
       this.notificationError(status)
     }else {
       this.dataService.createSidecomexRates(this.myForm.value).subscribe()
-      this.status = "success"
-      this.notificationSuccess(this.status)
+      let status = "success"
+      this.notificationSuccess(status)
       this.myForm.reset()
       setTimeout(() => {
         window.location.reload()
@@ -115,8 +113,8 @@ export class SidecomexRatesComponent implements OnInit {
     } else {
       let form = this.myForm.value
       this.dataService.editConcept(this.conceptName, form).subscribe()
-      this.status = "success"
-      this.notificationSuccess(this.status)
+      let status = "success"
+      this.notificationSuccess(status)
       this.myForm.reset()
       setTimeout(() => {
         window.location.reload()
