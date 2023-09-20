@@ -64,6 +64,11 @@ export class SidecomexRatesComponent implements OnInit {
   }
 
 
+  clearForm() {
+    window.location.reload()
+  }
+
+
   /**
    *
    * @param concept Metodo que obtiene el nombre del concepto para editar su valor

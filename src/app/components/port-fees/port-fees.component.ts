@@ -95,6 +95,10 @@ export class PortFeesComponent implements OnInit {
             && this.myForm.get(field)?.touched;
   }
 
+  clearForm () {
+      window.location.reload()
+  }
+
 
   /**
    * La función `getPort` recupera información de tarifas portuarias en función de un nombre de puerto

@@ -1,3 +1,4 @@
+<button *ngIf="this.portName" nz-button nzDanger (click)="clearForm()">Limpiar formulario </button>
 <div class="form" [formGroup]="myForm" (ngSubmit)="submit()" >
 
   <h2 class="title">Tarifas de puertos </h2>
@@ -136,6 +137,8 @@
   <button *ngIf="!this.portName" class="btn" (click)="submit()" nz-button nzType="primary">Enviar</button>
   <button *ngIf="this.portName" class="btn" (click)="editForm()" nz-button nzType="primary">Actualizar</button>
 </div>
+</div>
+<div>
 </div>
 
 <hr>

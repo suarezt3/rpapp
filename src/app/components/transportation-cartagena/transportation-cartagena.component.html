@@ -1,3 +1,4 @@
+<button *ngIf="this.transporterName" nz-button nzDanger (click)="clearForm()">Limpiar formulario</button>
 <div class="form" [formGroup]="myForm" (ngSubmit)="submit()" >
 
   <h2 class="title">Tarifas Cartagena - Malambo </h2>

@@ -69,6 +69,10 @@ export class TransportationCartagenaComponent implements OnInit {
     }
 
 
+    clearForm() {
+      window.location.reload()
+    }
+
   /**
    * La función de envío comprueba si un formulario no es válido, muestra una notificación de error si
    * lo es; de lo contrario, envía los datos del formulario a un servicio, muestra una notificación de

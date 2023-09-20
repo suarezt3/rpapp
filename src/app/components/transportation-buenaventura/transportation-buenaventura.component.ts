@@ -68,6 +68,10 @@ export class TransportationBuenaventuraComponent implements OnInit {
               && this.myForm.get(field)?.touched;
     }
 
+    clearForm() {
+      window.location.reload()
+    }
+
 
   /**
    * La función de envío comprueba si un formulario no es válido, muestra una notificación de error si

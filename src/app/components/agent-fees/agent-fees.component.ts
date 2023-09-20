@@ -77,6 +77,11 @@ export class AgentFeesComponent implements OnInit {
             && this.myForm.get(field)?.touched;
   }
 
+  clearForm () {
+    window.location.reload()
+}
+
+
 
 /**
  * La función de envío verifica si el formulario es válido, crea tarifas de envío si lo es y muestra
