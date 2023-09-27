@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgzorroModule } from '../ngzorro/ngzorro.module';
 import { TransportationCartagenaComponent } from './transportation-cartagena/transportation-cartagena.component';
 import { TransportationBuenaventuraComponent } from './transportation-buenaventura/transportation-buenaventura.component';
+import { CodigosMaterialesComponent } from './codigos-materiales/codigos-materiales.component';
 
 
 
@@ -22,7 +23,8 @@ import { TransportationBuenaventuraComponent } from './transportation-buenaventu
     TerrestrialRatesComponent,
     OtherFeesComponent,
     TransportationCartagenaComponent,
-    TransportationBuenaventuraComponent
+    TransportationBuenaventuraComponent,
+    CodigosMaterialesComponent
   ],
   imports: [
     CommonModule,

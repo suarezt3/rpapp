@@ -206,6 +206,19 @@ getCartagenaTransporterID(transporter: string){
    return this.http.get<any>( `${this.apiURL}/transportersCartagena?cartagenaMalambo=eq.${transporter}` , {headers}).pipe()
 }
 
+/**
+ *
+ * @param concept Devuelve los datos de los codigos de los materiales
+ * @returns
+ */
+getCodigoMaterial(){
+  let headers = new HttpHeaders({
+    'apikey'       : environment.supabaseKey,
+    'Authorization': environment.authorization
+  })
+   return this.http.get<any>( `${this.apiURL}//codigoMaterial` , {headers}).pipe()
+}
+
 
 //?---------------------------------POST-------------------------------------------
 

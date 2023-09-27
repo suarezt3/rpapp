@@ -9,6 +9,7 @@ import { TerrestrialRatesComponent } from 'src/app/components/terrestrial-rates/
 import { OtherFeesComponent } from 'src/app/components/other-fees/other-fees.component';
 import { TransportationBuenaventuraComponent } from 'src/app/components/transportation-buenaventura/transportation-buenaventura.component';
 import { TransportationCartagenaComponent } from 'src/app/components/transportation-cartagena/transportation-cartagena.component';
+import { CodigosMaterialesComponent } from 'src/app/components/codigos-materiales/codigos-materiales.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'buenaventura', component: TransportationBuenaventuraComponent },
   { path: 'cartagena', component: TransportationCartagenaComponent },
   { path: 'otras-tarifas', component: OtherFeesComponent },
-  { path: 'reporte', component: ReportComponent }
+  { path: 'reporte', component: ReportComponent },
+  { path: 'materiales', component: CodigosMaterialesComponent }
 ];
 
 @NgModule({

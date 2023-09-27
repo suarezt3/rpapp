@@ -1,0 +1,32 @@
+
+<h2 class="title">Lista de materiales</h2>
+<div>
+  <nz-table #basicTable [nzData]="data" [nzShowPagination]="false" [nzScroll]="{y: '300px'}">
+    <thead>
+      <tr>
+        <th class="table-head"><strong>Material origen</strong></th>
+        <th class="table-head"><strong>Material local</strong></th>
+        <th class="table-head"><strong>Tipo</strong></th>
+        <th class="table-head"><strong>País exportador</strong></th>
+        <th class="table-head"><strong>País origen</strong></th>
+        <th class="table-head"><strong>Proveedor</strong></th>
+        <th class="table-head"><strong>Clasificación</strong></th>
+        <th class="table-head"><strong>Descripción</strong></th>
+        <th class="table-head"><strong>Partida arancelaria</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of data">
+        <td>{{ data?.materialOrigen }}</td>
+        <td>{{ data?.materialLocal }}</td>
+        <td>{{ data?.tipo }}</td>
+        <td>{{ data?.paisExportador }}</td>
+        <td>{{ data?.paisOrigen ?? 'No registra'  }}</td>
+        <td>{{ data?.proveedor}}</td>
+        <td>{{ data?.clasificacion  ?? 'No registra'  }}</td>
+        <td>{{ data?.descripcion }}</td>
+        <td>{{ data?.partidaArancelaria}}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

@@ -3,11 +3,11 @@ import { MATERIAL } from 'src/app/interfaces/codigoMaterial';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
-  selector: 'app-report',
-  templateUrl: './report.component.html',
-  styleUrls: ['./report.component.css']
+  selector: 'app-codigos-materiales',
+  templateUrl: './codigos-materiales.component.html',
+  styleUrls: ['./codigos-materiales.component.css']
 })
-export class ReportComponent implements OnInit {
+export class CodigosMaterialesComponent implements OnInit {
 
   public data!: MATERIAL[];
 
