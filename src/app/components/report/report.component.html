@@ -1,1 +1,8 @@
-<p>report works!</p>
+<div class="search" [formGroup]="formSearch" (ngSubmit)="enviar()">
+  <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+    <input class="search" type="text" nz-input placeholder="Ingresa el codigo de un material" formControlName="search" />
+  </nz-input-group>
+  <ng-template #suffixButton>
+    <button nz-button nzType="primary" nzSize="large" nzSearch (click)="enviar()">Buscar</button>
+  </ng-template>
+</div>
