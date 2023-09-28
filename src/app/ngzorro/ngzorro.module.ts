@@ -10,6 +10,7 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 
 
@@ -24,7 +25,8 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     NzDividerModule,
     NzNotificationModule,
     NzSelectModule,
-    NzIconModule
+    NzIconModule,
+    NzModalModule
   ],
   exports: [
     NzInputModule,
@@ -34,7 +36,8 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     NzDividerModule,
     NzNotificationModule,
     NzSelectModule,
-    NzIconModule
+    NzIconModule,
+    NzModalModule
   ]
 })
 export class NgzorroModule { }

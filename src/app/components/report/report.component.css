@@ -1,3 +1,13 @@
 .search {
   width: 300px;
 }
+
+.texto-material {
+  color: crimson;
+}
+
+.modal {
+  cursor: pointer;
+  color: rgb(18, 120, 255);
+  font-weight: bold;
+}

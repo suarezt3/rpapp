@@ -10,6 +10,8 @@ import { DataService } from 'src/app/services/data.service';
 export class CodigosMaterialesComponent implements OnInit {
 
   public data!: MATERIAL[];
+  public isVisible: boolean = false;
+  public isOkLoading: boolean = false;
 
   constructor(private dataService: DataService) {}
 
@@ -19,6 +21,22 @@ export class CodigosMaterialesComponent implements OnInit {
       console.log(this.data);
 
     })
+  }
+
+  showModal(): void {
+    this.isVisible = true;
+  }
+
+  handleOk(): void {
+    this.isOkLoading = true;
+    setTimeout(() => {
+      this.isVisible = false;
+      this.isOkLoading = false;
+    }, 1000);
+  }
+
+  handleCancel(): void {
+    this.isVisible = false;
   }
 
 }

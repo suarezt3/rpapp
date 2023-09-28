@@ -11,6 +11,7 @@ import { NgzorroModule } from '../ngzorro/ngzorro.module';
 import { TransportationCartagenaComponent } from './transportation-cartagena/transportation-cartagena.component';
 import { TransportationBuenaventuraComponent } from './transportation-buenaventura/transportation-buenaventura.component';
 import { CodigosMaterialesComponent } from './codigos-materiales/codigos-materiales.component';
+import { FormMaterialComponent } from './form-material/form-material.component';
 
 
 
@@ -24,7 +25,8 @@ import { CodigosMaterialesComponent } from './codigos-materiales/codigos-materia
     OtherFeesComponent,
     TransportationCartagenaComponent,
     TransportationBuenaventuraComponent,
-    CodigosMaterialesComponent
+    CodigosMaterialesComponent,
+    FormMaterialComponent
   ],
   imports: [
     CommonModule,
