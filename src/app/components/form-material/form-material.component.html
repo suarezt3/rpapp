@@ -1,1 +1,48 @@
-<h1>Hola</h1>
+<div>
+<form class="sections" [formGroup]="formMaterial"  (ngSubmit)="enviar()">
+  <section>
+    <div class="div-input" >
+      <label>Material de origen</label>
+      <input formControlName="materialOrigen" nz-input type="text">
+    </div>
+    <div class="div-input" >
+      <label>Material local</label>
+      <input formControlName="materialLocal" nz-input type="text">
+    </div>
+    <div class="div-input" >
+      <label>Tipo</label>
+      <input formControlName="tipo" nz-input type="text">
+    </div>
+    <div class="div-input" >
+      <label>País exportador</label>
+      <input formControlName="paisExportador" nz-input type="text">
+    </div>
+    <div class="div-input" >
+      <label>País origen</label>
+      <input formControlName="paisOrigen" nz-input type="text">
+    </div>
+  </section>
+
+  <section>
+    <div class="div-input" >
+      <label>Proveedor</label>
+      <input formControlName="proveedor" nz-input type="text">
+    </div>
+    <div class="div-input" >
+      <label>Clasificación</label>
+      <input formControlName="clasificacion" nz-input type="text">
+    </div>
+    <div class="div-input" >
+      <label>Descripción</label>
+      <input formControlName="descripcion" nz-input type="text">
+    </div>
+    <div class="div-input" >
+      <label>Partida arancelaria</label>
+      <input formControlName="partidaArancelaria" nz-input type="number">
+    </div>
+    <div class="div-btn">
+      <button nz-button [disabled]="formMaterial.invalid" nzType="primary">Enviar</button>
+    </div>
+  </section>
+</form>
+</div>

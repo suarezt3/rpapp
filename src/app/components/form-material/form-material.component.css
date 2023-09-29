@@ -1,0 +1,14 @@
+.sections {
+  display: flex;
+  justify-content: space-between;
+}
+
+.div-input {
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+.div-btn {
+  margin-top: 33px;
+  margin-left: 155px;
+}
