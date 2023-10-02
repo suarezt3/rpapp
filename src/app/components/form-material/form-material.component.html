@@ -5,21 +5,43 @@
       <label>Material de origen</label>
       <input formControlName="materialOrigen" nz-input type="text">
     </div>
+    <div class="error" *ngIf="invalidField('materialOrigen')">
+      <span *ngIf="formMaterial.controls?.['materialOrigen']?.errors?.['required']"> Campo obligatorio </span>
+      <span *ngIf="formMaterial.controls?.['materialOrigen']?.errors?.['materialExist']">Este codigo de material ya existe en la base de datos </span>
+    </div>
     <div class="div-input" >
       <label>Material local</label>
       <input formControlName="materialLocal" nz-input type="text">
     </div>
+    <div class="error" *ngIf="invalidField('materialLocal')">
+      <span *ngIf="formMaterial.controls?.['materialLocal']?.errors?.['required']"> Campo obligatorio </span>
+    </div>
     <div class="div-input" >
       <label>Tipo</label>
-      <input formControlName="tipo" nz-input type="text">
+      <nz-input-group>
+        <nz-select nzPlaceHolder="Selecciona una opcion"
+          formControlName="tipo" class="input">
+          <nz-option  nzValue="AFILIADA" nzLabel="AFILIADA"></nz-option>
+          <nz-option  nzValue="TERCERO" nzLabel="TERCERO"></nz-option>
+        </nz-select>
+      </nz-input-group>
+    </div>
+    <div class="error" *ngIf="invalidField('tipo')">
+      <span *ngIf="formMaterial.controls?.['tipo']?.errors?.['required']"> Campo obligatorio </span>
     </div>
     <div class="div-input" >
       <label>País exportador</label>
       <input formControlName="paisExportador" nz-input type="text">
     </div>
+    <div class="error" *ngIf="invalidField('paisExportador')">
+      <span *ngIf="formMaterial.controls?.['paisExportador']?.errors?.['required']"> Campo obligatorio </span>
+    </div>
     <div class="div-input" >
       <label>País origen</label>
       <input formControlName="paisOrigen" nz-input type="text">
+    </div>
+    <div class="error" *ngIf="invalidField('paisOrigen')">
+      <span *ngIf="formMaterial.controls?.['paisOrigen']?.errors?.['required']"> Campo obligatorio </span>
     </div>
   </section>
 
@@ -27,6 +49,9 @@
     <div class="div-input" >
       <label>Proveedor</label>
       <input formControlName="proveedor" nz-input type="text">
+    </div>
+    <div class="error" *ngIf="invalidField('proveedor')">
+      <span *ngIf="formMaterial.controls?.['proveedor']?.errors?.['required']"> Campo obligatorio </span>
     </div>
     <div class="div-input" >
       <label>Clasificación</label>
@@ -36,12 +61,18 @@
       <label>Descripción</label>
       <input formControlName="descripcion" nz-input type="text">
     </div>
+    <div class="error" *ngIf="invalidField('descripcion')">
+      <span *ngIf="formMaterial.controls?.['descripcion']?.errors?.['required']"> Campo obligatorio </span>
+    </div>
     <div class="div-input" >
       <label>Partida arancelaria</label>
       <input formControlName="partidaArancelaria" nz-input type="number">
     </div>
+    <div class="error" *ngIf="invalidField('partidaArancelaria')">
+      <span *ngIf="formMaterial.controls?.['partidaArancelaria']?.errors?.['required']"> Campo obligatorio </span>
+    </div>
     <div class="div-btn">
-      <button nz-button [disabled]="formMaterial.invalid" nzType="primary">Enviar</button>
+      <button nz-button nzType="primary">Enviar</button>
     </div>
   </section>
 </form>

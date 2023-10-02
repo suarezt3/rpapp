@@ -299,7 +299,17 @@ createtCartagenaTransporters(body: {}) {
    return this.http.post<any>(`${this.apiURL}/transportersCartagena`, body, {headers}).pipe()
 }
 
-
+/**
+ *
+ * @returns Metodo para crear un material en la base de datos
+ */
+createtMaterial(body: {}) {
+  let headers = new HttpHeaders({
+    'apikey'       : environment.supabaseKey,
+    'Authorization': environment.authorization
+  })
+   return this.http.post<any>(`${this.apiURL}/codigoMaterial`, body, {headers}).pipe()
+}
 
 
 //?------------------------------------PATCH-----------------------------------------
