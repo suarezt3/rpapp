@@ -12,6 +12,7 @@ export class ReportComponent implements OnInit {
 
   public data!: MATERIAL[];
   public formSearch!: FormGroup;
+  public formReport!: FormGroup;
   public materialExiste: boolean = true;
   public material: string = '';
   public isVisible: boolean = false;
@@ -25,6 +26,21 @@ export class ReportComponent implements OnInit {
       console.log(this.data);
     })
 
+    this.formReport = this.fb.group({
+      materialOrigen    : ["", [Validators.required]],
+      tipo              : ["", [Validators.required]],
+      paisExportador    : ["", [Validators.required]],
+      paisOrigen        : ["", [Validators.required]],
+      proveedor         : ["", [Validators.required]],
+      clasificacion     : [""],
+      materialLocal     : ["", [Validators.required]],
+      descripcion       : ["", [Validators.required]],
+      partidaArancelaria: ["", [Validators.required]],
+    })
+
+    /**
+     * Formulario con el campo para buscar los materiales
+     */
     this.formSearch = this.fb.group({
       search: ["", [Validators.required]]
     })
