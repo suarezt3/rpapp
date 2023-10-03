@@ -9,8 +9,12 @@
       (nzOnCancel)="handleCancel()"
       (nzOnOk)="handleOk()"
       [nzOkLoading]="isOkLoading"
+      [nzFooter]="modalFooter"
     >
       <app-form-material *nzModalContent></app-form-material>
+      <ng-template #modalFooter>
+        <button nz-button nzType="default" (click)="handleCancel()">Cancelar</button>
+      </ng-template>
 </nz-modal>
 
 <hr>
