@@ -11,7 +11,7 @@ import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzModalModule } from 'ng-zorro-antd/modal';
-
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 
 
@@ -26,7 +26,8 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     NzNotificationModule,
     NzSelectModule,
     NzIconModule,
-    NzModalModule
+    NzModalModule,
+    NzToolTipModule
   ],
   exports: [
     NzInputModule,
@@ -37,7 +38,8 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     NzNotificationModule,
     NzSelectModule,
     NzIconModule,
-    NzModalModule
+    NzModalModule,
+    NzToolTipModule
   ]
 })
 export class NgzorroModule { }

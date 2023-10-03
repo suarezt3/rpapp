@@ -56,10 +56,21 @@ export class ReportComponent implements OnInit {
       if(resp.length === 0) {
         this.materialExiste = false
         this.material = material
-
       }
       else{
+        console.log("Estoy aqui");
         this.materialExiste = true
+        this.formReport.patchValue({
+          materialOrigen    : resp[0]?.materialOrigen,
+          tipo              : resp[0]?.tipo,
+          paisExportador    : resp[0]?.paisExportador,
+          paisOrigen        : resp[0]?.paisOrigen,
+          proveedor         : resp[0]?.proveedor,
+          clasificacion     : resp[0]?.clasificacion,
+          materialLocal     : resp[0]?.materialLocal,
+          descripcion       : resp[0]?.descripcion,
+          partidaArancelaria: resp[0]?.partidaArancelaria
+     })
       }
     })
 
