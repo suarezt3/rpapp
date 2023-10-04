@@ -232,6 +232,20 @@ getMaterialID(material: string){
    return this.http.get<any>( `${this.apiURL}/codigoMaterial?materialOrigen=eq.${material}` , {headers}).pipe()
 }
 
+/**
+ *
+ * @param material devuelve los datos del material que se pase como parametro
+ * @returns
+ */
+getIncoterms(){
+  let headers = new HttpHeaders({
+    'apikey'       : environment.supabaseKey,
+    'Authorization': environment.authorization
+  })
+   return this.http.get<any>( `${this.apiURL}/incoterms` , {headers}).pipe()
+}
+
+
 //?---------------------------------POST-------------------------------------------
 
 /**

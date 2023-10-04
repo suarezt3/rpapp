@@ -1,11 +1,11 @@
-<div class="search" [formGroup]="formSearch" (ngSubmit)="enviar()">
+<div class="search" [formGroup]="formSearch" (ngSubmit)="buscarCodigo()">
   <span nz-tooltip nzTooltipTitle="Debes ingresar un codigo de material valido para comenzar a generar el reporte" nz-icon nzType="info-circle" nzTheme="twotone"></span>
   <label class="text-label"><span> Ingresa el codigo del material</span></label>
   <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
     <input class="search" type="text" nz-input placeholder="Ingresa el codigo de un material" formControlName="search" />
   </nz-input-group>
   <ng-template #suffixButton>
-    <button [disabled]="formSearch.invalid" nz-button nzType="primary" nzSize="large" nzSearch (click)="enviar()">Buscar</button>
+    <button [disabled]="formSearch.invalid" nz-button nzType="primary" nzSize="large" nzSearch (click)="buscarCodigo()">Buscar</button>
   </ng-template>
 </div>
 <div *ngIf="materialExiste === false">
@@ -25,9 +25,9 @@
         <button nz-button nzType="default" (click)="handleCancel()">Cancelar</button>
       </ng-template>
 </nz-modal>
-<hr>
 
-<div *ngIf="materialExiste === true">
+
+<div class="container-form" *ngIf="materialExiste === true">
   <form [formGroup]="formReport">
     <div>
       <label class="text-label">Material origen</label>
@@ -64,6 +64,15 @@
     <div>
       <label class="text-label">Partida arancelaria</label>
       <input nz-input formControlName="partidaArancelaria" type="text">
+    </div>
+    <div>
+      <label class="text-label">Incoterm</label>
+      <nz-input-group>
+        <nz-select nzPlaceHolder="Selecciona una opcion"
+          formControlName="incoterm" class="input">
+          <nz-option *ngFor="let item of incoterms"  [nzValue]="item?.termino" [nzLabel]="item.termino"></nz-option>
+        </nz-select>
+      </nz-input-group>
     </div>
 
   </form>

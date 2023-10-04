@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MATERIAL } from 'src/app/interfaces/codigoMaterial';
+import { INCOTERMS } from 'src/app/interfaces/incoterms';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class ReportComponent implements OnInit {
 
   public data!         : MATERIAL[];
   public dataMaterial! : MATERIAL[];
+  public incoterms!    : INCOTERMS[];
   public formSearch!   : FormGroup;
   public formReport!   : FormGroup;
   public materialExiste!: boolean;
@@ -22,9 +24,20 @@ export class ReportComponent implements OnInit {
   constructor(private dataService: DataService, private fb: FormBuilder) {}
 
   ngOnInit() {
+
+    /**
+     * Trae los datos de los materiales de la base de datos
+     */
     this.dataService.getCodigoMaterial().subscribe((resp: MATERIAL[]) => {
       this.data = resp
       console.log(this.data);
+    })
+
+    /**
+     * Trae la lista de los incoterms de la base de datos
+     */
+    this.dataService.getIncoterms().subscribe((resp: INCOTERMS[]) => {
+      this.incoterms = resp
     })
 
     this.formReport = this.fb.group({
@@ -37,6 +50,7 @@ export class ReportComponent implements OnInit {
       materialLocal     : ["", [Validators.required]],
       descripcion       : ["", [Validators.required]],
       partidaArancelaria: ["", [Validators.required]],
+      incoterm          : [""]
     })
 
     /**
@@ -50,7 +64,10 @@ export class ReportComponent implements OnInit {
 
 
 
-  enviar() {
+  /**
+   * Trae los datos asociados al codigo de material que se envia como parametro
+   */
+  buscarCodigo() {
     let material = this.formSearch.get('search')?.value.toUpperCase()
     this.dataService.getMaterialID(material).subscribe((resp: MATERIAL[]) => {
       this.dataMaterial = resp;
@@ -66,9 +83,9 @@ export class ReportComponent implements OnInit {
           materialOrigen    : resp[0]?.materialOrigen,
           tipo              : resp[0]?.tipo,
           paisExportador    : resp[0]?.paisExportador,
-          paisOrigen        : resp[0]?.paisOrigen,
+          paisOrigen        : resp[0]?.paisOrigen ?? "No registra",
           proveedor         : resp[0]?.proveedor,
-          clasificacion     : resp[0]?.clasificacion,
+          clasificacion     : resp[0]?.clasificacion ?? "No registra",
           materialLocal     : resp[0]?.materialLocal,
           descripcion       : resp[0]?.descripcion,
           partidaArancelaria: resp[0]?.partidaArancelaria
