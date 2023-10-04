@@ -10,13 +10,14 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class ReportComponent implements OnInit {
 
-  public data!: MATERIAL[];
-  public formSearch!: FormGroup;
-  public formReport!: FormGroup;
-  public materialExiste: boolean = true;
-  public material: string = '';
-  public isVisible: boolean = false;
-  public isOkLoading: boolean = false;
+  public data!         : MATERIAL[];
+  public dataMaterial! : MATERIAL[];
+  public formSearch!   : FormGroup;
+  public formReport!   : FormGroup;
+  public materialExiste!: boolean;
+  public material      : string = '';
+  public isVisible     : boolean = false;
+  public isOkLoading   : boolean = false;
 
   constructor(private dataService: DataService, private fb: FormBuilder) {}
 
@@ -52,6 +53,7 @@ export class ReportComponent implements OnInit {
   enviar() {
     let material = this.formSearch.get('search')?.value.toUpperCase()
     this.dataService.getMaterialID(material).subscribe((resp: MATERIAL[]) => {
+      this.dataMaterial = resp;
       console.log("MATERIAL",resp);
       if(resp.length === 0) {
         this.materialExiste = false
@@ -70,10 +72,9 @@ export class ReportComponent implements OnInit {
           materialLocal     : resp[0]?.materialLocal,
           descripcion       : resp[0]?.descripcion,
           partidaArancelaria: resp[0]?.partidaArancelaria
-     })
+        })
       }
     })
-
     this.formSearch.reset()
   }
 

@@ -1,6 +1,6 @@
 <div class="search" [formGroup]="formSearch" (ngSubmit)="enviar()">
   <span nz-tooltip nzTooltipTitle="Debes ingresar un codigo de material valido para comenzar a generar el reporte" nz-icon nzType="info-circle" nzTheme="twotone"></span>
-  <label><span> Ingresa el codigo del material</span></label>
+  <label class="text-label"><span> Ingresa el codigo del material</span></label>
   <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
     <input class="search" type="text" nz-input placeholder="Ingresa el codigo de un material" formControlName="search" />
   </nz-input-group>
@@ -26,12 +26,49 @@
       </ng-template>
 </nz-modal>
 <hr>
-<div>
+
+<div *ngIf="materialExiste === true">
   <form [formGroup]="formReport">
-    <label>Material origen</label>
     <div>
+      <label class="text-label">Material origen</label>
       <input nz-input formControlName="materialOrigen" type="text">
     </div>
+    <div>
+      <label class="text-label">Material local</label>
+      <input nz-input formControlName="materialLocal" type="text">
+    </div>
+    <div>
+      <label class="text-label">Tipo</label>
+      <input nz-input formControlName="tipo" type="text">
+    </div>
+    <div>
+      <label class="text-label">País exportador</label>
+      <input nz-input formControlName="paisExportador" type="text">
+    </div>
+    <div>
+      <label class="text-label">País origen</label>
+      <input nz-input formControlName="paisOrigen" type="text">
+    </div>
+    <div>
+      <label class="text-label">Proveedor</label>
+      <input nz-input formControlName="proveedor" type="text">
+    </div>
+    <div>
+      <label class="text-label">Clasificación</label>
+      <input nz-input formControlName="clasificacion" type="text">
+    </div>
+    <div>
+      <label class="text-label">Descripción</label>
+      <input nz-input formControlName="descripcion" type="text">
+    </div>
+    <div>
+      <label class="text-label">Partida arancelaria</label>
+      <input nz-input formControlName="partidaArancelaria" type="text">
+    </div>
+
   </form>
+
 </div>
+
+
 
