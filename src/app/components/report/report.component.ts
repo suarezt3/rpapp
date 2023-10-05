@@ -11,15 +11,18 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class ReportComponent implements OnInit {
 
-  public data!         : MATERIAL[];
-  public dataMaterial! : MATERIAL[];
-  public incoterms!    : INCOTERMS[];
-  public formSearch!   : FormGroup;
-  public formReport!   : FormGroup;
-  public materialExiste!: boolean;
-  public material      : string = '';
-  public isVisible     : boolean = false;
-  public isOkLoading   : boolean = false;
+  public data!           : MATERIAL[];
+  public dataMaterial!   : MATERIAL[];
+  public incoterms!      : INCOTERMS[];
+  public formSearch!     : FormGroup;
+  public formReport!     : FormGroup;
+  public materialExiste! : boolean;
+  public material        : string  = '';
+  public isVisible       : boolean = false;
+  public isOkLoading     : boolean = false;
+  public decimalValidator: string  = "^[0-9]+(\,[0-9]{1,2})?$";
+
+
 
   constructor(private dataService: DataService, private fb: FormBuilder) {}
 
@@ -50,10 +53,12 @@ export class ReportComponent implements OnInit {
       materialLocal     : ["", [Validators.required]],
       descripcion       : ["", [Validators.required]],
       partidaArancelaria: ["", [Validators.required]],
-      incoterm          : [""],
-      incotermCiudad    : [""],
-      puertoOrigen      : [""],
-      toneladasContainer: [""]
+      incoterm          : [""], //!Pendiente por la validacion
+      incotermCiudad    : [""], //!Pendiente por la validacion
+      puertoOrigen      : [""], //!Pendiente por la validacion
+      toneladasContainer: ["", [Validators.pattern(this.decimalValidator)]],
+      tipoContenedor    : ["", [Validators.required]],
+      agenteDeCarga     : ["", [Validators.required]]
     })
 
     /**
@@ -65,6 +70,16 @@ export class ReportComponent implements OnInit {
 
   }
 
+
+  /**
+   *
+   * Para validar los campos del formulario
+   * @returns
+   */
+  invalidField( field: string ) {
+    return this.formReport.get(field)?.invalid
+            && this.formReport.get(field)?.touched;
+  }
 
 
   /**

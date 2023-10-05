@@ -84,6 +84,23 @@
     <div>
       <label class="text-label">Toneladas container</label>
       <input nz-input formControlName="toneladasContainer" type="text">
+      <div class="error" *ngIf="invalidField('toneladasContainer')" >
+        <span  *ngIf="formReport.controls?.['toneladasContainer']?.errors?.['pattern']">Ingresa un valor valido</span>
+      </div>
+    </div>
+    <div>
+      <label class="text-label">Tipo contenedor</label>
+      <input nz-input formControlName="tipoContenedor" type="text">
+      <div class="error" *ngIf="invalidField('tipoContenedor')" >
+        <span  *ngIf="formReport.controls?.['tipoContenedor']?.errors?.['required']">Este campo es obligatorio</span>
+      </div>
+    </div>
+    <div>
+      <label class="text-label">Agente de carga</label>
+      <input nz-input formControlName="agenteDeCarga" type="text">
+      <div class="error" *ngIf="invalidField('agenteDeCarga')" >
+        <span  *ngIf="formReport.controls?.['agenteDeCarga']?.errors?.['required']">Este campo es obligatorio</span>
+      </div>
     </div>
 
   </form>
