@@ -50,7 +50,10 @@ export class ReportComponent implements OnInit {
       materialLocal     : ["", [Validators.required]],
       descripcion       : ["", [Validators.required]],
       partidaArancelaria: ["", [Validators.required]],
-      incoterm          : [""]
+      incoterm          : [""],
+      incotermCiudad    : [""],
+      puertoOrigen      : [""],
+      toneladasContainer: [""]
     })
 
     /**

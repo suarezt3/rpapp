@@ -67,12 +67,23 @@
     </div>
     <div>
       <label class="text-label">Incoterm</label>
-      <nz-input-group>
+      <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+        <input formControlName="incotermCiudad" type="text" nz-input  />
+      </nz-input-group>
+      <ng-template #addOnBeforeTemplate>
         <nz-select nzPlaceHolder="Selecciona una opcion"
           formControlName="incoterm" class="input">
           <nz-option *ngFor="let item of incoterms"  [nzValue]="item?.termino" [nzLabel]="item.termino"></nz-option>
         </nz-select>
-      </nz-input-group>
+      </ng-template>
+    </div>
+    <div>
+      <label class="text-label">Puerto origen</label>
+      <input nz-input formControlName="puertoOrigen" type="text">
+    </div>
+    <div>
+      <label class="text-label">Toneladas container</label>
+      <input nz-input formControlName="toneladasContainer" type="text">
     </div>
 
   </form>
