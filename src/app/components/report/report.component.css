@@ -15,3 +15,29 @@
 .container-form {
   margin-top: 20px;
 }
+
+.form {
+  display: flex;
+  justify-content: center;
+}
+
+.inputs-group {
+  margin-right: 10px;
+}
+
+.div-inputs {
+  margin-bottom: 15px;
+  width: 250px;
+}
+
+.input-select-incoterm {
+  width: 125px;
+}
+
+.input-select {
+  width: 250px;
+}
+
+.input {
+  margin-bottom: 10px;
+}

@@ -28,86 +28,93 @@
 
 
 <div class="container-form" *ngIf="materialExiste === true">
-  <form [formGroup]="formReport">
-    <div>
-      <label class="text-label">Material origen</label>
-      <input nz-input formControlName="materialOrigen" type="text">
-    </div>
-    <div>
-      <label class="text-label">Material local</label>
-      <input nz-input formControlName="materialLocal" type="text">
-    </div>
-    <div>
-      <label class="text-label">Tipo</label>
-      <input nz-input formControlName="tipo" type="text">
-    </div>
-    <div>
-      <label class="text-label">País exportador</label>
-      <input nz-input formControlName="paisExportador" type="text">
-    </div>
-    <div>
-      <label class="text-label">País origen</label>
-      <input nz-input formControlName="paisOrigen" type="text">
-    </div>
-    <div>
-      <label class="text-label">Proveedor</label>
-      <input nz-input formControlName="proveedor" type="text">
-    </div>
-    <div>
-      <label class="text-label">Clasificación</label>
-      <input nz-input formControlName="clasificacion" type="text">
-    </div>
-    <div>
-      <label class="text-label">Descripción</label>
-      <input nz-input formControlName="descripcion" type="text">
-    </div>
-    <div>
-      <label class="text-label">Partida arancelaria</label>
-      <input nz-input formControlName="partidaArancelaria" type="text">
-    </div>
-    <div>
-      <label class="text-label">Incoterm</label>
-      <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
-        <input formControlName="incotermCiudad" type="text" nz-input  />
-      </nz-input-group>
-      <ng-template #addOnBeforeTemplate>
-        <nz-select nzPlaceHolder="Selecciona una opcion"
-          formControlName="incoterm" class="input">
-          <nz-option *ngFor="let item of incoterms"  [nzValue]="item?.termino" [nzLabel]="item.termino"></nz-option>
+  <form class="form" [formGroup]="formReport">
+
+    <section class="inputs-group">
+      <div class="div-inputs">
+        <label class="text-label">Material origen</label>
+        <input nz-input formControlName="materialOrigen" type="text">
+      </div>
+      <div class="div-inputs">
+        <label class="text-label">Material local</label>
+        <input nz-input formControlName="materialLocal" type="text">
+      </div>
+      <div class="div-inputs">
+        <label class="text-label">Tipo</label>
+        <input nz-input formControlName="tipo" type="text">
+      </div>
+      <div class="div-inputs">
+        <label class="text-label">País exportador</label>
+        <input nz-input formControlName="paisExportador" type="text">
+      </div>
+      <div class="div-inputs">
+        <label class="text-label">País origen</label>
+        <input nz-input formControlName="paisOrigen" type="text">
+      </div>
+      <div class="div-inputs">
+        <label class="text-label">Proveedor</label>
+        <input nz-input formControlName="proveedor" type="text">
+      </div>
+      <div class="div-inputs">
+        <label class="text-label">Clasificación</label>
+        <input nz-input formControlName="clasificacion" type="text">
+      </div>
+    </section>
+
+    <section class="inputs-group">
+      <div class="div-inputs">
+        <label class="text-label">Descripción</label>
+        <input nz-input formControlName="descripcion" type="text">
+      </div>
+      <div class="div-inputs">
+        <label class="text-label">Partida arancelaria</label>
+        <input nz-input formControlName="partidaArancelaria" type="text">
+      </div>
+      <div class="div-inputs">
+        <label class="text-label">Incoterm</label>
+        <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+          <input formControlName="incotermCiudad" type="text" nz-input  />
+        </nz-input-group>
+        <ng-template #addOnBeforeTemplate>
+          <nz-select nzPlaceHolder="Selecciona una opcion"
+            formControlName="incoterm" class="input-select-incoterm">
+            <nz-option *ngFor="let item of incoterms"  [nzValue]="item?.termino" [nzLabel]="item.termino"></nz-option>
+          </nz-select>
+        </ng-template>
+      </div>
+      <div class="div-inputs">
+        <label class="text-label">Puerto origen</label>
+        <input nz-input formControlName="puertoOrigen" type="text">
+      </div>
+      <div class="div-inputs">
+        <label class="text-label">Toneladas container</label>
+        <input nz-input formControlName="toneladasContainer" type="text">
+        <div class="error" *ngIf="invalidField('toneladasContainer')" >
+          <span  *ngIf="formReport.controls?.['toneladasContainer']?.errors?.['pattern']">Ingresa un valor valido</span>
+        </div>
+      </div>
+      <div class="div-inputs">
+        <label class="text-label">Tipo contenedor</label>
+        <nz-input-group class="input">
+          <nz-select nzPlaceHolder="Selecciona una opcion"
+          formControlName="tipoContenedor" class="input-select">
+          <nz-option nzValue="AIR" nzLabel="AIR"></nz-option>
+          <nz-option nzValue="FCL" nzLabel="FCL"></nz-option>
         </nz-select>
-      </ng-template>
-    </div>
-    <div>
-      <label class="text-label">Puerto origen</label>
-      <input nz-input formControlName="puertoOrigen" type="text">
-    </div>
-    <div>
-      <label class="text-label">Toneladas container</label>
-      <input nz-input formControlName="toneladasContainer" type="text">
-      <div class="error" *ngIf="invalidField('toneladasContainer')" >
-        <span  *ngIf="formReport.controls?.['toneladasContainer']?.errors?.['pattern']">Ingresa un valor valido</span>
+        </nz-input-group>
+        <div class="error" *ngIf="invalidField('tipoContenedor')" >
+          <span  *ngIf="formReport.controls?.['tipoContenedor']?.errors?.['required']">Este campo es obligatorio</span>
+        </div>
       </div>
-    </div>
-    <div>
-      <label class="text-label">Tipo contenedor</label>
-      <nz-input-group>
-        <nz-select nzPlaceHolder="Selecciona una opcion"
-        formControlName="tipoContenedor" class="input">
-        <nz-option nzValue="AIR" nzLabel="AIR"></nz-option>
-        <nz-option nzValue="FCL" nzLabel="FCL"></nz-option>
-      </nz-select>
-      </nz-input-group>
-      <div class="error" *ngIf="invalidField('tipoContenedor')" >
-        <span  *ngIf="formReport.controls?.['tipoContenedor']?.errors?.['required']">Este campo es obligatorio</span>
+      <div class="div-inputs">
+        <label class="text-label">Agente de carga</label>
+        <input class="input" nz-input formControlName="agenteDeCarga" type="text">
+        <div class="error" *ngIf="invalidField('agenteDeCarga')" >
+          <span  *ngIf="formReport.controls?.['agenteDeCarga']?.errors?.['required']">Este campo es obligatorio</span>
+        </div>
       </div>
-    </div>
-    <div>
-      <label class="text-label">Agente de carga</label>
-      <input nz-input formControlName="agenteDeCarga" type="text">
-      <div class="error" *ngIf="invalidField('agenteDeCarga')" >
-        <span  *ngIf="formReport.controls?.['agenteDeCarga']?.errors?.['required']">Este campo es obligatorio</span>
-      </div>
-    </div>
+    </section>
+
 
   </form>
 
