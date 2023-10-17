@@ -87,8 +87,9 @@
         <input nz-input formControlName="puertoOrigen" type="text">
       </div>
       <div class="div-inputs">
-        <label class="text-label">Toneladas container</label>
-        <input nz-input formControlName="toneladasContainer" type="text">
+        <span nz-tooltip nzTooltipTitle="Ingresa un valor separado por una coma Ejem: 1,0" nz-icon nzType="info-circle" nzTheme="twotone"></span>
+        <label class="text-label"> Toneladas container</label>
+        <input class="input" nz-input formControlName="toneladasContainer" type="text">
         <div class="error" *ngIf="invalidField('toneladasContainer')" >
           <span  *ngIf="formReport.controls?.['toneladasContainer']?.errors?.['pattern']">Ingresa un valor valido</span>
         </div>
