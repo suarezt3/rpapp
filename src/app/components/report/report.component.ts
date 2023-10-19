@@ -60,7 +60,8 @@ export class ReportComponent implements OnInit {
       puertoOrigen      : [""], //!Pendiente por la validacion
       toneladasContainer: ["", [Validators.pattern(this.decimalValidator)]],
       tipoContenedor    : ["", [Validators.required]],
-      agenteDeCarga     : ["", [Validators.required]]
+      agenteDeCarga     : ["", [Validators.required]],
+      arancelGeneral    : [""]
     })
 
     /**
@@ -112,7 +113,8 @@ export class ReportComponent implements OnInit {
           clasificacion     : resp[0]?.clasificacion ?? "No registra",
           materialLocal     : resp[0]?.materialLocal,
           descripcion       : resp[0]?.descripcion,
-          partidaArancelaria: this.partidaArancelaria[0]?.partidaArancelaria ?? "No registra",
+          partidaArancelaria: this.partidaArancelaria[0]?.partidaArancelaria,
+          arancelGeneral    : this.partidaArancelaria[0]?.arancelGeneral,
         })
       }
     })
