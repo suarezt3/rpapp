@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MATERIAL } from 'src/app/interfaces/codigoMaterial';
 import { INCOTERMS } from 'src/app/interfaces/incoterms';
+import { PARTIDASARANCELARIAS } from 'src/app/interfaces/partidasarancelarias';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -11,16 +12,17 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class ReportComponent implements OnInit {
 
-  public data!           : MATERIAL[];
-  public dataMaterial!   : MATERIAL[];
-  public incoterms!      : INCOTERMS[];
-  public formSearch!     : FormGroup;
-  public formReport!     : FormGroup;
-  public materialExiste! : boolean;
-  public material        : string  = '';
-  public isVisible       : boolean = false;
-  public isOkLoading     : boolean = false;
-  public decimalValidator: string  = "^[0-9]+(\,[0-9]{1,2})?$";
+  public data!               : MATERIAL[];
+  public dataMaterial!       : MATERIAL[];
+  public incoterms!          : INCOTERMS[];
+  public partidaArancelaria! : PARTIDASARANCELARIAS[];
+  public formSearch!         : FormGroup;
+  public formReport!         : FormGroup;
+  public materialExiste!     : boolean;
+  public material            : string  = '';
+  public isVisible           : boolean = false;
+  public isOkLoading         : boolean = false;
+  public decimalValidator    : string  = "^[0-9]+(\,[0-9]{1,2})?$";
 
 
 
@@ -87,6 +89,10 @@ export class ReportComponent implements OnInit {
    */
   buscarCodigo() {
     let material = this.formSearch.get('search')?.value.toUpperCase()
+    this.dataService.getPartidaArancelariaID(material).subscribe((partida: PARTIDASARANCELARIAS[]) => {
+      console.log("PARTIDA", partida);
+      this.partidaArancelaria = partida
+    })
     this.dataService.getMaterialID(material).subscribe((resp: MATERIAL[]) => {
       this.dataMaterial = resp;
       console.log("MATERIAL",resp);
@@ -106,7 +112,7 @@ export class ReportComponent implements OnInit {
           clasificacion     : resp[0]?.clasificacion ?? "No registra",
           materialLocal     : resp[0]?.materialLocal,
           descripcion       : resp[0]?.descripcion,
-          partidaArancelaria: resp[0]?.partidaArancelaria
+          partidaArancelaria: this.partidaArancelaria[0]?.partidaArancelaria ?? "No registra",
         })
       }
     })
