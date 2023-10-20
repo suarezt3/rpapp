@@ -45,6 +45,10 @@ export class ReportComponent implements OnInit {
       this.incoterms = resp
     })
 
+    this.dataService.getFreight().subscribe((resp) => {
+      console.log("FREIGHT", resp);
+    })
+
     this.formReport = this.fb.group({
       materialOrigen    : ["", [Validators.required]],
       tipo              : ["", [Validators.required]],
@@ -61,7 +65,8 @@ export class ReportComponent implements OnInit {
       toneladasContainer: ["", [Validators.pattern(this.decimalValidator)]],
       tipoContenedor    : ["", [Validators.required]],
       agenteDeCarga     : ["", [Validators.required]],
-      arancelGeneral    : [""]
+      arancelGeneral    : [""], //!Pendiente por la validacion
+      fletePorContenedor: [""]
     })
 
     /**

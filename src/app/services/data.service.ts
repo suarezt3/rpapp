@@ -241,6 +241,15 @@ getPartidaArancelariaID(material: string){
    return this.http.get<any>( `${this.apiURL}/partidasArancelarias?materialLocal=eq.${material}` , {headers}).pipe()
 }
 
+getFreight(){
+  let headers = new HttpHeaders({
+    'apikey'       : environment.supabaseKey,
+    'Authorization': environment.authorization
+  })
+   return this.http.get<any>( `${this.apiURL}/freight` , {headers}).pipe()
+}
+
+
 
 /**
  *

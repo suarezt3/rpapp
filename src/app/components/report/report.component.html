@@ -114,9 +114,16 @@
           <span  *ngIf="formReport.controls?.['agenteDeCarga']?.errors?.['required']">Este campo es obligatorio</span>
         </div>
       </div>
+    </section>
+
+    <section class="inputs-group">
       <div class="div-inputs">
         <label class="text-label">Arancel general</label>
-        <input class="input" nz-input formControlName="arancelGeneral" type="text">
+        <input  nz-input formControlName="arancelGeneral" type="text">
+      </div>
+      <div class="div-inputs">
+        <label class="text-label">Flete por contenedor / LCL</label>
+        <input  nz-input formControlName="fletePorContenedor" type="text">
       </div>
     </section>
 
