@@ -113,8 +113,8 @@ export class ReportComponent implements OnInit {
           clasificacion     : resp[0]?.clasificacion ?? "No registra",
           materialLocal     : resp[0]?.materialLocal,
           descripcion       : resp[0]?.descripcion,
-          partidaArancelaria: this.partidaArancelaria[0]?.partidaArancelaria,
-          arancelGeneral    : this.partidaArancelaria[0]?.arancelGeneral,
+          partidaArancelaria: this.partidaArancelaria[0]?.partidaArancelaria ?? undefined,
+          arancelGeneral    : this.partidaArancelaria[0]?.arancelGeneral ?? undefined,
         })
       }
     })

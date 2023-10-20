@@ -14,7 +14,7 @@ export interface PARTIDASARANCELARIAS {
   toneladaContainer?:  string;
   tipoContenedor?:     string;
   agenteCarga?:        string;
-  partidaArancelaria?: number;
+  partidaArancelaria?: number | undefined;
   archivoSidecomex?:   number;
   aplicaAcuerdo?:      boolean;
   arancelGeneral?:     string;
