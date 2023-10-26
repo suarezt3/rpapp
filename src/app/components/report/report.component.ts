@@ -99,30 +99,35 @@ export class ReportComponent implements OnInit {
       console.log("PARTIDA", partida);
       this.partidaArancelaria = partida
     })
-    this.dataService.getMaterialID(material).subscribe((resp: MATERIAL[]) => {
-      this.dataMaterial = resp;
-      console.log("MATERIAL",resp);
-      if(resp.length === 0) {
-        this.materialExiste = false
-        this.material = material
-      }
-      else{
-        console.log("Estoy aqui");
-        this.materialExiste = true
-        this.formReport.patchValue({
-          materialOrigen    : resp[0]?.materialOrigen,
-          tipo              : resp[0]?.tipo,
-          paisExportador    : resp[0]?.paisExportador,
-          paisOrigen        : resp[0]?.paisOrigen ?? "No registra",
-          proveedor         : resp[0]?.proveedor,
-          clasificacion     : resp[0]?.clasificacion ?? "No registra",
-          materialLocal     : resp[0]?.materialLocal,
-          descripcion       : resp[0]?.descripcion,
-          partidaArancelaria: this.partidaArancelaria[0]?.partidaArancelaria ?? undefined,
-          arancelGeneral    : this.partidaArancelaria[0]?.arancelGeneral ?? undefined,
-        })
-      }
-    })
+
+    setTimeout(() => {
+      this.dataService.getMaterialID(material).subscribe((resp: MATERIAL[]) => {
+        this.dataMaterial = resp;
+        console.log("MATERIAL",resp);
+        if(resp.length === 0) {
+          this.materialExiste = false
+          this.material = material
+        }
+        else{
+          console.log("Estoy aqui");
+          this.materialExiste = true
+          this.formReport.patchValue({
+            materialOrigen    : resp[0]?.materialOrigen,
+            tipo              : resp[0]?.tipo,
+            paisExportador    : resp[0]?.paisExportador,
+            paisOrigen        : resp[0]?.paisOrigen ?? "No registra",
+            proveedor         : resp[0]?.proveedor,
+            clasificacion     : resp[0]?.clasificacion ?? "No registra",
+            materialLocal     : resp[0]?.materialLocal,
+            descripcion       : resp[0]?.descripcion,
+            partidaArancelaria: this.partidaArancelaria[0]?.partidaArancelaria ?? undefined,
+            arancelGeneral    : this.partidaArancelaria[0]?.arancelGeneral ?? undefined,
+          })
+        }
+      })
+    }, 1000);
+
+
     this.formSearch.reset()
   }
 
