@@ -22,6 +22,9 @@ export class ReportComponent implements OnInit {
   public material            : string  = '';
   public isVisible           : boolean = false;
   public isOkLoading         : boolean = false;
+  public isLoading           : boolean = false;
+
+
   public decimalValidator    : string  = "^[0-9]+(\,[0-9]{1,2})?$";
 
 
@@ -94,6 +97,7 @@ export class ReportComponent implements OnInit {
    * Trae los datos asociados al codigo de material que se envia como parametro
    */
   buscarCodigo() {
+    this.isLoading = true
     let material = this.formSearch.get('search')?.value.toUpperCase()
     this.dataService.getPartidaArancelariaID(material).subscribe((partida: PARTIDASARANCELARIAS[]) => {
       console.log("PARTIDA", partida);
@@ -125,9 +129,8 @@ export class ReportComponent implements OnInit {
           })
         }
       })
-    }, 1000);
-
-
+      this.isLoading = false;
+    }, 1500);
     this.formSearch.reset()
   }
 

@@ -5,7 +5,7 @@
     <input class="search" type="text" nz-input placeholder="Ingresa el codigo de un material" formControlName="search" />
   </nz-input-group>
   <ng-template #suffixButton>
-    <button [disabled]="formSearch.invalid" nz-button nzType="primary" nzSize="large" nzSearch (click)="buscarCodigo()">Buscar</button>
+    <button [nzLoading]="isLoading" [disabled]="formSearch.invalid" nz-button nzType="primary" nzSize="large" nzSearch (click)="buscarCodigo()">Buscar</button>
   </ng-template>
 </div>
 <div *ngIf="materialExiste === false">
