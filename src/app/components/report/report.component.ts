@@ -82,7 +82,6 @@ export class ReportComponent implements OnInit {
       gastoSidecomex        : [""], //!Pendiente por la validacion
       demoras               : [""], //!Pendiente por la validacion
       inspeccion            : [""], //!Pendiente por la validacion
-        //?Faltan por agregar los controlnames en el formulario
       fletePuertoBodegaUSDMT: [""], //!Pendiente por la validacion
       standBy               : [""], //!Pendiente por la validacion
       arancel               : [""], //!Pendiente por la validacion
