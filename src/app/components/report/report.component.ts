@@ -53,28 +53,41 @@ export class ReportComponent implements OnInit {
     })
 
     this.formReport = this.fb.group({
-      materialOrigen    : ["", [Validators.required]],
-      tipo              : ["", [Validators.required]],
-      paisExportador    : ["", [Validators.required]],
-      paisOrigen        : ["", [Validators.required]],
-      proveedor         : ["", [Validators.required]],
-      clasificacion     : [""],
-      materialLocal     : ["", [Validators.required]],
-      descripcion       : ["", [Validators.required]],
-      partidaArancelaria: ["", [Validators.required]],
-      incoterm          : [""], //!Pendiente por la validacion
-      incotermCiudad    : [""], //!Pendiente por la validacion
-      puertoOrigen      : [""], //!Pendiente por la validacion
-      toneladasContainer: ["", [Validators.pattern(this.decimalValidator)]],
-      tipoContenedor    : ["", [Validators.required]],
-      agenteDeCarga     : ["", [Validators.required]],
-      arancelGeneral    : [""], //!Pendiente por la validacion
-      fletePorContenedor: [""], //!Pendiente por la validacion
-      EXWFOBUSDTON      : [""], //!Pendiente por la validacion
-      FleteTon          : [""], //!Pendiente por la validacion
-      CFRUSMT           : [""], //!Pendiente por la validacion
-      seguro            : [""], //!Pendiente por la validacion
-      Royalties         : [""], //!Pendiente por la validacion
+      materialOrigen        : ["", [Validators.required]],
+      tipo                  : ["", [Validators.required]],
+      paisExportador        : ["", [Validators.required]],
+      paisOrigen            : ["", [Validators.required]],
+      proveedor             : ["", [Validators.required]],
+      clasificacion         : [""],
+      materialLocal         : ["", [Validators.required]],
+      descripcion           : ["", [Validators.required]],
+      partidaArancelaria    : ["", [Validators.required]],
+      incoterm              : [""], //!Pendiente por la validacion
+      incotermCiudad        : [""], //!Pendiente por la validacion
+      puertoOrigen          : [""], //!Pendiente por la validacion
+      toneladasContainer    : ["", [Validators.pattern(this.decimalValidator)]],
+      tipoContenedor        : ["", [Validators.required]],
+      agenteDeCarga         : ["", [Validators.required]],
+      arancelGeneral        : [""], //!Pendiente por la validacion
+      fletePorContenedor    : [""], //!Pendiente por la validacion
+      EXWFOBUSDTON          : [""], //!Pendiente por la validacion
+      FleteTon              : [""], //!Pendiente por la validacion
+      CFRUSMT               : [""], //!Pendiente por la validacion
+      seguro                : [""], //!Pendiente por la validacion
+      royalties             : [""], //!Pendiente por la validacion
+      //?Faltan por agregar los controlnames en el formulario
+      valorEnAduanaUSton    : [""], //!Pendiente por la validacion
+      gastosPortuarios      : [""], //!Pendiente por la validacion
+      bodegajes             : [""], //!Pendiente por la validacion
+      manejoAgenteNaviera   : [""], //!Pendiente por la validacion
+      gastoSidecomex        : [""], //!Pendiente por la validacion
+      demoras               : [""], //!Pendiente por la validacion
+      inspeccion            : [""], //!Pendiente por la validacion
+      fletePuertoBodegaUSDMT: [""], //!Pendiente por la validacion
+      standBy               : [""], //!Pendiente por la validacion
+      arancel               : [""], //!Pendiente por la validacion
+      valor                 : [""], //!Pendiente por la validacion
+      landedCostUSDMT       : [""], //!Pendiente por la validacion
     })
 
     /**
