@@ -69,7 +69,12 @@ export class ReportComponent implements OnInit {
       tipoContenedor    : ["", [Validators.required]],
       agenteDeCarga     : ["", [Validators.required]],
       arancelGeneral    : [""], //!Pendiente por la validacion
-      fletePorContenedor: [""]
+      fletePorContenedor: [""], //!Pendiente por la validacion
+      EXWFOBUSDTON      : [""], //!Pendiente por la validacion
+      FleteTon          : [""], //!Pendiente por la validacion
+      CFRUSMT           : [""], //!Pendiente por la validacion
+      seguro            : [""], //!Pendiente por la validacion
+      Royalties         : [""], //!Pendiente por la validacion
     })
 
     /**
