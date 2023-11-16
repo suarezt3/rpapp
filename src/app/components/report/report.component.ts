@@ -75,7 +75,6 @@ export class ReportComponent implements OnInit {
       CFRUSMT               : [""], //!Pendiente por la validacion
       seguro                : [""], //!Pendiente por la validacion
       royalties             : [""], //!Pendiente por la validacion
-      //?Faltan por agregar los controlnames en el formulario
       valorEnAduanaUSton    : [""], //!Pendiente por la validacion
       gastosPortuarios      : [""], //!Pendiente por la validacion
       bodegajes             : [""], //!Pendiente por la validacion
@@ -83,6 +82,7 @@ export class ReportComponent implements OnInit {
       gastoSidecomex        : [""], //!Pendiente por la validacion
       demoras               : [""], //!Pendiente por la validacion
       inspeccion            : [""], //!Pendiente por la validacion
+        //?Faltan por agregar los controlnames en el formulario
       fletePuertoBodegaUSDMT: [""], //!Pendiente por la validacion
       standBy               : [""], //!Pendiente por la validacion
       arancel               : [""], //!Pendiente por la validacion
